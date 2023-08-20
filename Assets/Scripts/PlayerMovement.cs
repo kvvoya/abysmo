@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
    [SerializeField] float maxMoveSpeed;
    [SerializeField] float accelerationSpeed = 1f;
    [SerializeField] float decreaseSpeed = 0.5f;
+
    private float moveSpeed;
 
    Rigidbody2D rb;
@@ -41,9 +42,17 @@ public class PlayerMovement : MonoBehaviour
       {
          calculatedVector = movementVector;
       }
-      Debug.Log($"Calculated vector: {calculatedVector}");
+      // Debug.Log($"Calculated vector: {calculatedVector}");
 
-      rb.velocity = new Vector2(calculatedVector.x * moveSpeed * Time.deltaTime, calculatedVector.y * moveSpeed * Time.deltaTime);
+      // rb.velocity = new Vector2(calculatedVector.x * moveSpeed * Time.deltaTime, calculatedVector.y * moveSpeed * Time.deltaTime);
+      rb.AddForce(new Vector2(calculatedVector.x * moveSpeed, calculatedVector.y * moveSpeed), ForceMode2D.Impulse);
+
+      Vector2 clampedVelocity = rb.velocity;
+      clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -moveSpeed, moveSpeed);
+      clampedVelocity.y = Mathf.Clamp(clampedVelocity.y, -moveSpeed, moveSpeed);
+
+      rb.velocity = clampedVelocity;
+      Debug.Log(rb.velocity);
    }
 
    private void ProcessInputs()
@@ -87,4 +96,7 @@ public class PlayerMovement : MonoBehaviour
       }
       moveSpeed = Mathf.Clamp(moveSpeed, 0f, maxMoveSpeed);
    }
+
 }
+
+

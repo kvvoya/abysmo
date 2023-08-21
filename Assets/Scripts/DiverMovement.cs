@@ -3,28 +3,60 @@ using UnityEngine;
 
 public class DiverMovement : MonoBehaviour
 {
-   [SerializeField] float moveSpeed;
-   [SerializeField] float velocityCap;
-   [SerializeField] float dampingStrength;
+   [Header("Start vars")]
+   [SerializeField] float startMoveSpeed = 5f;
+   [SerializeField] float startVelocityCap = 7f;
+   [SerializeField] float startDampingStrength = 40f;
+   [SerializeField] float startMass = 10f;
+
+   [Space(20)]
+   [Header("End vars")]
+
+   [SerializeField] float endMoveSpeed;
+   [SerializeField] float endVelocityCap;
+   [SerializeField] float endDampingStrength;
+   [SerializeField] float endMass;
+
+   private float moveSpeed;
+   private float velocityCap;
+   private float dampingStrength;
 
    Rigidbody2D rb;
+   PressureManager pressureManager;
 
    private Vector2 movementVector;
 
    private void Start()
    {
       rb = GetComponent<Rigidbody2D>();
+      pressureManager = FindObjectOfType<PressureManager>();
+
+      moveSpeed = startMoveSpeed;
+      velocityCap = startVelocityCap;
+      dampingStrength = startDampingStrength;
+      rb.mass = startMass;
    }
 
    private void Update()
    {
       ProcessInputs();
+      ApplyPressureFactors();
    }
+
 
    private void FixedUpdate()
    {
       ApplyVelocity();
       ApplyDamping();
+   }
+
+   private void ApplyPressureFactors()
+   {
+      float pressure = pressureManager.pressure;
+
+      moveSpeed = startMoveSpeed - (startMoveSpeed - endMoveSpeed) / 1000 * pressure;
+      velocityCap = startVelocityCap - (startVelocityCap - endVelocityCap) / 1000 * pressure;
+      rb.mass = startMass + (endMass - startMass) / 1000 * pressure;
    }
 
    private void ApplyVelocity()

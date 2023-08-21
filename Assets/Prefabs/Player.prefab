@@ -47,9 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b62e4feb216f1f49b584af64f2f6e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  velocityCap: 6.74
-  dampingStrength: 40
+  startMoveSpeed: 5
+  startVelocityCap: 7
+  startDampingStrength: 40
+  startMass: 10
+  endMoveSpeed: 0
+  endVelocityCap: 0
+  endDampingStrength: 40
+  endMass: 50
 --- !u!50 &203943139381490514
 Rigidbody2D:
   serializedVersion: 4

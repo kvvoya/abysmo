@@ -17,12 +17,23 @@ public class DiverMovement : MonoBehaviour
    [SerializeField] float endDampingStrength;
    [SerializeField] float endMass;
 
+   [Space(20)]
+   [Header("Misc")]
+   [SerializeField] bool isRightByDefault = true;
+   [SerializeField] float rotationFactor = 1f;
+   [SerializeField] float particleFactor = 0.7f;
+
    private float moveSpeed;
    private float velocityCap;
    private float dampingStrength;
 
    Rigidbody2D rb;
    PressureManager pressureManager;
+   public new SpriteRenderer renderer;
+   public Transform bodyTransform;
+   public ParticleSystem trailParticleSystem;
+
+   ParticleSystem.EmissionModule emissionModule;
 
    private Vector2 movementVector;
 
@@ -35,14 +46,28 @@ public class DiverMovement : MonoBehaviour
       velocityCap = startVelocityCap;
       dampingStrength = startDampingStrength;
       rb.mass = startMass;
+
+      emissionModule = trailParticleSystem.emission;
    }
 
    private void Update()
    {
       ProcessInputs();
       ApplyPressureFactors();
+      RotateSprite();
    }
 
+   private void SetFlip(float moveX)
+   {
+      if (moveX > 0)
+      {
+         renderer.flipX = !isRightByDefault;
+      }
+      else if (moveX < 0)
+      {
+         renderer.flipX = isRightByDefault;
+      }
+   }
 
    private void FixedUpdate()
    {
@@ -56,7 +81,10 @@ public class DiverMovement : MonoBehaviour
 
       moveSpeed = startMoveSpeed - (startMoveSpeed - endMoveSpeed) / 1000 * pressure;
       velocityCap = startVelocityCap - (startVelocityCap - endVelocityCap) / 1000 * pressure;
+      dampingStrength = startDampingStrength + (endDampingStrength - startDampingStrength) / 1000 * pressure;
       rb.mass = startMass + (endMass - startMass) / 1000 * pressure;
+
+      emissionModule.rateOverDistance = rb.mass * particleFactor;
    }
 
    private void ApplyVelocity()
@@ -68,7 +96,14 @@ public class DiverMovement : MonoBehaviour
       clampedVelocity.y = Mathf.Clamp(clampedVelocity.y, -velocityCap, velocityCap);
 
       rb.velocity = clampedVelocity;
-      Debug.Log(rb.velocity);
+
+      // Debug.Log(rb.velocity);
+   }
+
+   private void RotateSprite()
+   {
+      float rotateValue = (renderer.flipX ? -1 : 1) * rb.velocity.y * rotationFactor;
+      bodyTransform.rotation = Quaternion.Euler(0, 0, rotateValue);
    }
 
    private void ProcessInputs()
@@ -77,6 +112,7 @@ public class DiverMovement : MonoBehaviour
       float moveY = Input.GetAxisRaw("Vertical");
 
       movementVector = new Vector2(moveX, moveY).normalized;
+      SetFlip(moveX);
    }
 
 

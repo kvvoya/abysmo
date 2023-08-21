@@ -44,7 +44,9 @@ public class ObstacleSpawner : MonoBehaviour
    {
       if ((playerTransform.position.y - nextLevelPart.ObstaclePosition.y) < toGenerateBefore)
       {
+
          Instantiate(nextLevelPart.ObstacleType, nextLevelPart.ObstaclePosition, Quaternion.identity, gridParent);
+
          levelPartIndex++;
          nextLevelPart = generatedLevel[levelPartIndex];
       }

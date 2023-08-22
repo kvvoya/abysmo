@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
    [SerializeField] int maxHealth;
+
+   [SerializeField] UnityEvent onDeath;
    public int health { get; private set; }
 
    private void Start()
@@ -38,5 +41,6 @@ public class Health : MonoBehaviour
    private void Die()
    {
       Debug.Log("Dead");
+      onDeath?.Invoke();
    }
 }

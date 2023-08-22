@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
    [SerializeField] float stayTime = 0.5f;
 
    float timeSinceLastAttacked = Mathf.Infinity;
+   // bool isAttacking = false;
 
    Camera mainCamera;
 
@@ -27,7 +28,11 @@ public class PlayerCombat : MonoBehaviour
 
       Vector3 direction = cursorPosition - transform.position;
       float angle = Vector2.SignedAngle(Vector2.right, direction);
-      weaponParent.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+      if (!knife.gameObject.activeInHierarchy)
+      {
+         weaponParent.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+      }
 
       if (Input.GetMouseButtonDown(0))
       {

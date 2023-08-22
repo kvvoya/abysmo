@@ -10,6 +10,7 @@ public class Knife : MonoBehaviour
    {
       if (other.TryGetComponent<Health>(out Health targetHealth))
       {
+         Debug.Log($"Hit {other.gameObject.name} who has {targetHealth.health}");
          targetHealth.DealDamage(damage);
       }
    }

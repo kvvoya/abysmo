@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1862051321388747031, guid: 2b96a9006ca7c884f81458c3f748eea3, type: 3}
+      propertyPath: height
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 2408801345210777647, guid: 2b96a9006ca7c884f81458c3f748eea3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979526736890375717, guid: 2b96a9006ca7c884f81458c3f748eea3, type: 3}
       propertyPath: m_Name
-      value: Obstacle Variant
+      value: Obstacle 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

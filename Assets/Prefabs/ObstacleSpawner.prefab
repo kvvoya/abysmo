@@ -45,7 +45,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
+  - {fileID: 601882852238751201, guid: 1379edba96ccbbd4285820fd1b47b575, type: 3}
   - {fileID: 8241401537663596078, guid: 1d79c48096109744795aada2bd160699, type: 3}
   - {fileID: 1005220809129915149, guid: c242d8b5302f622459cd851ad832cbe7, type: 3}
-  - {fileID: 601882852238751201, guid: 1379edba96ccbbd4285820fd1b47b575, type: 3}
-  units: 1000
+  - {fileID: 2900696730193787308, guid: 33234f672bb6acb4b8df5482c8ba7c8b, type: 3}
+  - {fileID: 739723416546706837, guid: 6bb6afa933745b64890978a8427c2b11, type: 3}
+  - {fileID: 6271659842051276041, guid: b34225ece18a28b4788af9747d7464cd, type: 3}
+  - {fileID: 8782643937812646363, guid: ada514d4472a2964bbfaaaf16dcda8b0, type: 3}
+  - {fileID: 742937058136771907, guid: 9bf8bdcd62851304f829dd65c8676ec3, type: 3}
+  - {fileID: 1500189618270222315, guid: a1e9b14bcb6bf6847859a24246da4e56, type: 3}
+  - {fileID: 6840738559672534971, guid: a2924c0764d42674ba941b5b705c1a01, type: 3}
+  - {fileID: 2302885137089659677, guid: 64b034eb6a4992b4f8d3f039f6fbfa4a, type: 3}
+  - {fileID: 3338502523560100670, guid: b173a896230121442b358677f157cd71, type: 3}
+  - {fileID: 4254526545824405066, guid: 4b652d38a82f37743843db25ae0f308b, type: 3}
+  - {fileID: 5797198263817659194, guid: e6d41f4d5903c864bb795ef3ccd47a8e, type: 3}
+  - {fileID: 2477856719536257705, guid: 09bb922c7fe000246a2d90ea90acbba5, type: 3}
+  - {fileID: 8446157184474893706, guid: 1aab5ed1a9511a64caf80cdb8015b94c, type: 3}
+  - {fileID: 3170812878253139288, guid: d4d72ef4ee6d2b74fad4b7d2e2226446, type: 3}
+  - {fileID: 431160938619845180, guid: eb8f34b1a5daada4a9f5dfc61a95acb9, type: 3}
+  - {fileID: 7907496619730651498, guid: e22d5e4749ae20d41a81318e24e3d7cf, type: 3}
+  - {fileID: 3405606581325817817, guid: e4c82d9bb75568c41abb213dce34b9b1, type: 3}
+  - {fileID: 6139405801336953384, guid: c152ff7c46963244e8f4227d37d71704, type: 3}
+  units: 2000
+  gridParent: {fileID: 0}
+  toGenerateBefore: 10

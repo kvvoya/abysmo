@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public struct LevelPartData
 {
@@ -37,6 +38,7 @@ public class ObstacleSpawner : MonoBehaviour
       playerTransform = FindObjectOfType<Player>().transform;
 
       GenerateLevel();
+      AstarPath.active.logPathResults = PathLog.None;
       nextLevelPart = generatedLevel[levelPartIndex];
    }
 
@@ -44,8 +46,7 @@ public class ObstacleSpawner : MonoBehaviour
    {
       if ((playerTransform.position.y - nextLevelPart.ObstaclePosition.y) < toGenerateBefore)
       {
-
-         Instantiate(nextLevelPart.ObstacleType, nextLevelPart.ObstaclePosition, Quaternion.identity, gridParent);
+         Obstacle newObject = Instantiate(nextLevelPart.ObstacleType, nextLevelPart.ObstaclePosition, Quaternion.identity, gridParent);
 
          levelPartIndex++;
          nextLevelPart = generatedLevel[levelPartIndex];
@@ -64,9 +65,15 @@ public class ObstacleSpawner : MonoBehaviour
 
          Vector3 newObjectPosition = new Vector3(0, -height, 0);
 
-         // Instantiate(newObstacle, newObjectPosition, Quaternion.identity, gridParent);
+         Instantiate(newObstacle, newObjectPosition, Quaternion.identity, gridParent);
          generatedLevel.Add(new LevelPartData(newObstacle, newObjectPosition));
          height += newObstacle.Height;
+
+      }
+      AstarPath.active.Scan();
+      foreach (Obstacle obstacle in FindObjectsOfType<Obstacle>())
+      {
+         Destroy(obstacle.gameObject);
       }
 
    }

@@ -6,12 +6,14 @@ public class Enemy : MonoBehaviour
 {
    [SerializeField] float speed;
    [SerializeField] float nextWaypointDistance = 3f;
+   [SerializeField] float agroRange = 10f;
+   [SerializeField] float dontCareRange = 30f;
 
    private float distance;
 
    Path path;
    int currentWaypoint = 0;
-   bool reachedPath = false;
+   bool followPlayer = false;
 
    Seeker seeker;
    Rigidbody2D rb;
@@ -42,30 +44,62 @@ public class Enemy : MonoBehaviour
       }
    }
 
+   private void Update()
+   {
+      distance = Vector2.Distance(transform.position, player.transform.position);
+
+      if (followPlayer)
+      {
+         RotateTowardsPlayer();
+      }
+
+      if (distance < agroRange)
+      {
+         followPlayer = true;
+      }
+      else if (distance > dontCareRange)
+      {
+         followPlayer = false;
+      }
+   }
+
+   private void OnDrawGizmos()
+   {
+      Gizmos.color = Color.red;
+      Gizmos.DrawWireSphere(transform.position, agroRange);
+   }
+
+   private void RotateTowardsPlayer()
+   {
+      Vector2 direction = player.transform.position - transform.position;
+      direction.Normalize();
+
+      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+      transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+   }
+
    private void FixedUpdate()
    {
-      if (path == null) return;
-
-      if (currentWaypoint >= path.vectorPath.Count)
+      if (path != null && followPlayer)
       {
-         reachedPath = true;
-         return;
+         if (currentWaypoint >= path.vectorPath.Count)
+         {
+            return;
+         }
+
+         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+         Vector2 force = direction * speed * Time.deltaTime;
+
+         rb.AddForce(force);
+
+
+         float waypointDistance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+         if (waypointDistance < nextWaypointDistance)
+         {
+            currentWaypoint++;
+         }
       }
-      else
-      {
-         reachedPath = false;
-      }
 
-      Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-      Vector2 force = direction * speed * Time.deltaTime;
-
-      rb.AddForce(force);
-
-      float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-      if (distance < nextWaypointDistance)
-      {
-         currentWaypoint++;
-      }
    }
 }

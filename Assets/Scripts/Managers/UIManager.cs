@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
    Health playerHealth;
    Player player;
    OxygenManager oxygenManager;
+   CursorManager cursorManager;
+
+   bool isInGame = true;
 
    private void Start()
    {
@@ -21,6 +24,9 @@ public class UIManager : MonoBehaviour
       player = FindObjectOfType<Player>();
       playerHealth = player.GetComponent<Health>();
       oxygenManager = FindObjectOfType<OxygenManager>();
+      cursorManager = FindObjectOfType<CursorManager>();
+
+      cursorManager.SetCursorType(false);
    }
 
    private void Update()

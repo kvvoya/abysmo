@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
    [SerializeField] GameObject knife;
    [SerializeField] Transform weaponParent;
    [SerializeField] SpriteRenderer parentRenderer;
+   [SerializeField] UnityEvent onKnife;
    [SerializeField] float cooldown;
    [SerializeField] float stayTime = 0.5f;
 
@@ -51,6 +51,7 @@ public class PlayerCombat : MonoBehaviour
          // transform.localScale = new Vector3(parentRenderer.flipX ? -1 : 1, 1, 1);
 
          timeSinceLastAttacked = 0f;
+         onKnife?.Invoke();
          StartCoroutine(ActivateKnife());
       }
    }
@@ -59,5 +60,11 @@ public class PlayerCombat : MonoBehaviour
    {
       yield return new WaitForSeconds(stayTime);
       knife.SetActive(false);
+   }
+
+   public float GetCDTimeRatio()
+   {
+      float result = Mathf.Min(timeSinceLastAttacked, cooldown) / cooldown;
+      return result;
    }
 }

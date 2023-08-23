@@ -1,15 +1,18 @@
 using UnityEngine;
 using Pathfinding;
-using System;
 
 public class Enemy : MonoBehaviour
 {
    [SerializeField] float speed;
-   [SerializeField] float nextWaypointDistance = 3f;
+   [SerializeField] int cost;
    [SerializeField] float agroRange = 10f;
    [SerializeField] float dontCareRange = 30f;
    [SerializeField] int contactDamage;
    [SerializeField] float physicsForce;
+   [Space(10)]
+
+   [Header("nevermind these")]
+   [SerializeField] float nextWaypointDistance = 3f;
    [SerializeField] new SpriteRenderer renderer;
    [SerializeField] ParticleSystem explosionParticles;
 
@@ -132,6 +135,7 @@ public class Enemy : MonoBehaviour
          Destroy(particles.gameObject, particles.main.duration * 2f);
       }
 
+      XPManager.GainXP(cost);
       Destroy(gameObject);
    }
 
@@ -139,7 +143,6 @@ public class Enemy : MonoBehaviour
    {
       if (other.gameObject.TryGetComponent<Player>(out Player player))
       {
-         Debug.Log("Collision with Player!");
          Health playerHealth = player.GetComponent<Health>();
          playerHealth.DealDamage(contactDamage);
 

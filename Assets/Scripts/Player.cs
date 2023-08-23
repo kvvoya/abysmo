@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +9,15 @@ public class Player : MonoBehaviour
 
    private void Update()
    {
+      Debugging();
+   }
 
+   private static void Debugging()
+   {
+      if (Input.GetKeyDown(KeyCode.Escape))
+      {
+         Application.Quit();
+      }
    }
 
    public void Die()

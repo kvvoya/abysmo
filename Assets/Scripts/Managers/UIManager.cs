@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,10 +8,12 @@ public class UIManager : MonoBehaviour
    [SerializeField] TextMeshProUGUI atmText;
    [SerializeField] Image healthMeter;
    [SerializeField] Image oxygenMeter;
+   [SerializeField] Image knifeCdMeter;
 
    PressureManager pressureManager;
    Health playerHealth;
    Player player;
+   PlayerCombat playerCombat;
    OxygenManager oxygenManager;
    CursorManager cursorManager;
    Animator animator;
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
       oxygenManager = FindObjectOfType<OxygenManager>();
       cursorManager = FindObjectOfType<CursorManager>();
       animator = GetComponent<Animator>();
+      playerCombat = player.GetComponent<PlayerCombat>();
 
       cursorManager.SetCursorType(false);
    }
@@ -41,5 +43,21 @@ public class UIManager : MonoBehaviour
    public void OnDamage()
    {
       animator.SetTrigger("playerDamaged");
+   }
+
+   public void OnKnifeUsed()
+   {
+      knifeCdMeter.gameObject.SetActive(true);
+      StartCoroutine(UseKnife());
+   }
+
+   private IEnumerator UseKnife()
+   {
+      while (playerCombat.GetCDTimeRatio() < 1f)
+      {
+         knifeCdMeter.fillAmount = playerCombat.GetCDTimeRatio();
+         yield return null;
+      }
+      knifeCdMeter.gameObject.SetActive(false);
    }
 }

@@ -44,6 +44,7 @@ public class ObstacleSpawner : MonoBehaviour
 
    private void Update()
    {
+
       if ((playerTransform.position.y - nextLevelPart.ObstaclePosition.y) < toGenerateBefore)
       {
          Obstacle newObject = Instantiate(nextLevelPart.ObstacleType, nextLevelPart.ObstaclePosition, Quaternion.identity, gridParent);

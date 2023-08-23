@@ -10,9 +10,12 @@ public class OxygenManager : MonoBehaviour
 
    public float TimeLimit { get; private set; }
 
+   private Health playerHealth;
+
    private void Start()
    {
       TimeLimit = maxTimeLimit;
+      playerHealth = FindObjectOfType<Player>().GetComponent<Health>();
    }
 
    private void Update()
@@ -26,6 +29,16 @@ public class OxygenManager : MonoBehaviour
       if (TimeLimit <= 0)
       {
          Debug.Log("Time out!");
+         StartCoroutine(KillPlayer(10, 1));
+      }
+   }
+
+   private IEnumerator KillPlayer(int damageAmount, float rate)
+   {
+      while (playerHealth.health > 0)
+      {
+         playerHealth.DealDamage(damageAmount);
+         yield return new WaitForSeconds(rate);
       }
    }
 

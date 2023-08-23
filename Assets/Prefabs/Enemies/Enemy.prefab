@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 8613792899255156402}
   - component: {fileID: 7901555079661015974}
   - component: {fileID: 759548111179642751}
+  - component: {fileID: 3936490208531955026}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Transform:
   m_Children:
   - {fileID: 3863611347778004440}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7861442240169646546
 MonoBehaviour:
@@ -133,10 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7f51d17f0c7e94991c4c6afb6e7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
-  nextWaypointDistance: 3
+  speed: 400
+  nextWaypointDistance: 0.8
   agroRange: 6.54
   dontCareRange: 30
+  contactDamage: 10
+  physicsForce: 100
+  renderer: {fileID: 877979574345661927}
+  explosionParticles: {fileID: 2182691619467330134, guid: f734ddcd59d9b7b41bf922818889aa1f, type: 3}
 --- !u!114 &1673645612723725781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +154,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d43cc5e772394444b8c7ffa3d04e06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
+  invincibilityTime: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7861442240169646546}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3936490208531955026}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: hit
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8613792899255156402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +246,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0008337498, y: -0.0555923}
+  m_Offset: {x: -0.00083327293, y: -0.09174979}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -221,7 +257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6091876, y: 1.5559225}
+  m_Size: {x: 0.729712, y: 1.6282375}
   m_EdgeRadius: 0
 --- !u!50 &759548111179642751
 Rigidbody2D:
@@ -250,3 +286,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &3936490208531955026
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693007309723000907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 048d166dc806e4d498ea8bc02758fcad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

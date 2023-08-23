@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private void Start()
-    {
-        
-    }
+   private void Start()
+   {
 
-    private void Update()
-    {
-        
-    }
+   }
+
+   private void Update()
+   {
+
+   }
+
+   public void Die()
+   {
+      Destroy(gameObject);
+   }
 }

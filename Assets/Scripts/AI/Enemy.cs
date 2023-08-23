@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
    [SerializeField] float nextWaypointDistance = 3f;
    [SerializeField] float agroRange = 10f;
    [SerializeField] float dontCareRange = 30f;
+   [SerializeField] int contactDamage;
+   [SerializeField] float physicsForce;
+   [SerializeField] new SpriteRenderer renderer;
+   [SerializeField] ParticleSystem explosionParticles;
 
    private float distance;
 
@@ -25,14 +29,16 @@ public class Enemy : MonoBehaviour
       seeker = GetComponent<Seeker>();
       rb = GetComponent<Rigidbody2D>();
 
-      InvokeRepeating("UpdatePath", 0f, .5f);
+      InvokeRepeating("UpdatePath", 0f, .25f);
 
    }
 
    private void UpdatePath()
    {
       if (seeker.IsDone())
+      {
          seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
+      }
    }
 
    private void OnPathComplete(Path p)
@@ -51,6 +57,7 @@ public class Enemy : MonoBehaviour
       if (followPlayer)
       {
          RotateTowardsPlayer();
+         FlipSprite();
       }
 
       if (distance < agroRange)
@@ -95,6 +102,7 @@ public class Enemy : MonoBehaviour
 
          float waypointDistance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
+
          if (waypointDistance < nextWaypointDistance)
          {
             currentWaypoint++;
@@ -103,8 +111,50 @@ public class Enemy : MonoBehaviour
 
    }
 
+   private void FlipSprite()
+   {
+      if (player.transform.position.x > transform.position.x)
+      {
+         renderer.flipY = false;
+      }
+      else if (player.transform.position.x < transform.position.x)
+      {
+         renderer.flipY = true;
+      }
+   }
+
    public void Die()
    {
+      if (explosionParticles != null)
+      {
+         ParticleSystem particles = Instantiate(explosionParticles, transform.position, Quaternion.identity);
+         particles.Play();
+         Destroy(particles.gameObject, particles.main.duration * 2f);
+      }
+
       Destroy(gameObject);
+   }
+
+   private void OnCollisionStay2D(Collision2D other)
+   {
+      if (other.gameObject.TryGetComponent<Player>(out Player player))
+      {
+         Debug.Log("Collision with Player!");
+         Health playerHealth = player.GetComponent<Health>();
+         playerHealth.DealDamage(contactDamage);
+
+
+         Debug.Log(transform.right.normalized);
+         playerHealth.ApplyForce(transform.right.normalized * physicsForce);
+      }
+   }
+
+   private float GetDirectionToPlayer(Player player)
+   {
+      Vector2 direction = player.transform.position - transform.position;
+      direction.Normalize();
+
+      float angle = Mathf.Atan2(direction.y, direction.x);
+      return angle;
    }
 }

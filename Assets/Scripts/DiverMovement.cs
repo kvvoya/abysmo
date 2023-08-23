@@ -34,13 +34,16 @@ public class DiverMovement : MonoBehaviour
    public ParticleSystem trailParticleSystem;
 
    ParticleSystem.EmissionModule emissionModule;
+   Animator animator;
 
    private Vector2 movementVector;
+
 
    private void Start()
    {
       rb = GetComponent<Rigidbody2D>();
       pressureManager = FindObjectOfType<PressureManager>();
+      animator = GetComponent<Animator>();
 
       moveSpeed = startMoveSpeed;
       velocityCap = startVelocityCap;
@@ -55,6 +58,15 @@ public class DiverMovement : MonoBehaviour
       ProcessInputs();
       ApplyPressureFactors();
       RotateSprite();
+
+      if (movementVector.magnitude > 0.01f)
+      {
+         animator.SetBool("isMoving", true);
+      }
+      else
+      {
+         animator.SetBool("isMoving", false);
+      }
    }
 
    private void SetFlip(float moveX)

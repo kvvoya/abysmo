@@ -1,19 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
    [SerializeField] int maxHealth;
+   [SerializeField] float invincibilityTime;
 
    [SerializeField] UnityEvent onDeath;
+   [SerializeField] UnityEvent onDamage;
+
    public int health { get; private set; }
+
+   private float timeSinceGotHurt = Mathf.Infinity;
+
+   Rigidbody2D rb;
 
    private void Start()
    {
       health = maxHealth;
+      rb = GetComponent<Rigidbody2D>();
    }
 
    private void Update()
@@ -23,11 +32,18 @@ public class Health : MonoBehaviour
          DealDamage(10);
       }
       CheckIfDead();
+
+      timeSinceGotHurt += Time.deltaTime;
    }
 
    public void DealDamage(int damage)
    {
+      if (timeSinceGotHurt < invincibilityTime) return;
+
       health -= damage;
+      onDamage?.Invoke();
+
+      timeSinceGotHurt = 0f;
    }
 
    private void CheckIfDead()
@@ -36,6 +52,15 @@ public class Health : MonoBehaviour
       {
          Die();
       }
+   }
+
+   public void ApplyForce(Vector2 direction)
+   {
+      if (timeSinceGotHurt > invincibilityTime || timeSinceGotHurt == 0f)
+      {
+         rb.AddForce(direction, ForceMode2D.Impulse);
+      }
+
    }
 
    private void Die()

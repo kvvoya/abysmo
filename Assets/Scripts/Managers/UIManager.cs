@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
    Player player;
    OxygenManager oxygenManager;
    CursorManager cursorManager;
+   Animator animator;
 
    bool isInGame = true;
 
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
       playerHealth = player.GetComponent<Health>();
       oxygenManager = FindObjectOfType<OxygenManager>();
       cursorManager = FindObjectOfType<CursorManager>();
+      animator = GetComponent<Animator>();
 
       cursorManager.SetCursorType(false);
    }
@@ -34,5 +36,10 @@ public class UIManager : MonoBehaviour
       atmText.text = $"{pressureManager.pressure} atm";
       healthMeter.fillAmount = (float)playerHealth.health / 100;
       oxygenMeter.fillAmount = oxygenManager.GetPercentage();
+   }
+
+   public void OnDamage()
+   {
+      animator.SetTrigger("playerDamaged");
    }
 }

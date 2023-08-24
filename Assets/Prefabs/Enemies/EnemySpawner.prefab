@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   enemies:
-  - {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+  - {fileID: 3825438236042670315, guid: 19a6fb0bbcd766a4aa68b502091f1217, type: 3}
+  - {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}

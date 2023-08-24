@@ -8,17 +8,23 @@ public class PlayerCombat : MonoBehaviour
    [SerializeField] Transform weaponParent;
    [SerializeField] SpriteRenderer parentRenderer;
    [SerializeField] UnityEvent onKnife;
-   [SerializeField] float cooldown;
+   [SerializeField] float startCooldown;
+   [SerializeField] float endCooldown;
    [SerializeField] float stayTime = 0.5f;
 
    float timeSinceLastAttacked = Mathf.Infinity;
+   float cooldown;
    // bool isAttacking = false;
 
    Camera mainCamera;
+   PressureManager pressureManager;
+   UIManager uIManager;
 
    private void Start()
    {
       mainCamera = Camera.main;
+      pressureManager = FindObjectOfType<PressureManager>();
+      uIManager = FindObjectOfType<UIManager>();
    }
 
    private void Update()
@@ -29,10 +35,12 @@ public class PlayerCombat : MonoBehaviour
       Vector3 direction = cursorPosition - transform.position;
       float angle = Vector2.SignedAngle(Vector2.right, direction);
 
-      if (!knife.gameObject.activeInHierarchy)
+      if (!knife.gameObject.activeInHierarchy && uIManager.IsInGame())
       {
          weaponParent.transform.rotation = Quaternion.Euler(0f, 0f, angle);
       }
+
+      ApplyCooldown();
 
       if (Input.GetMouseButtonDown(0))
       {
@@ -44,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
 
    private void HandleAttackButton()
    {
-      if (timeSinceLastAttacked > cooldown)
+      if (timeSinceLastAttacked > cooldown && uIManager.IsInGame())
       {
          knife.SetActive(true);
 
@@ -66,5 +74,12 @@ public class PlayerCombat : MonoBehaviour
    {
       float result = Mathf.Min(timeSinceLastAttacked, cooldown) / cooldown;
       return result;
+   }
+
+   private void ApplyCooldown()
+   {
+      float pressure = pressureManager.pressure;
+
+      cooldown = startCooldown + (endCooldown - startCooldown) / 1000 * pressure;
    }
 }

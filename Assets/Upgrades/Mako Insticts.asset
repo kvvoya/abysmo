@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea03be742a852a45890bd3dfda4f370, type: 3}
+  m_Name: Mako Insticts
+  m_EditorClassIdentifier: 
+  upgradeName: Mako Instincts
+  description: '+ Every kill gives <color=#D600F2>Pressure Reduction</color> by 20%
+    for 3 seconds
+
+    - You lose 2% of <color=#20F5EE>Oxygen</color> each kill'
+  priceTag: 10
+  sprite: {fileID: 21300000, guid: 4058ab43270015d4dadc5fac961e6113, type: 3}

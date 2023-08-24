@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea03be742a852a45890bd3dfda4f370, type: 3}
+  m_Name: Battery Borrow
+  m_EditorClassIdentifier: 
+  upgradeName: Battery Borrow
+  description: '+ Your <color=#E2FA0A>Directional Flashlight</color> covers 30% more
+    area
+
+    - Your <color=#E2FA0A>Ring Light</color> is 20% weaker'
+  priceTag: 10
+  sprite: {fileID: 21300000, guid: 464b76e685a5450429f10942bca0180d, type: 3}

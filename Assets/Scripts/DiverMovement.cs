@@ -34,6 +34,7 @@ public class DiverMovement : MonoBehaviour
 
    ParticleSystem.EmissionModule emissionModule;
    Animator animator;
+   UIManager uIManager;
 
    private Vector2 movementVector;
 
@@ -43,6 +44,7 @@ public class DiverMovement : MonoBehaviour
       rb = GetComponent<Rigidbody2D>();
       pressureManager = FindObjectOfType<PressureManager>();
       animator = GetComponent<Animator>();
+      uIManager = FindObjectOfType<UIManager>();
 
       moveSpeed = startMoveSpeed;
       velocityCap = startVelocityCap;
@@ -70,6 +72,8 @@ public class DiverMovement : MonoBehaviour
 
    private void SetFlip(float moveX)
    {
+      if (!uIManager.IsInGame()) return;
+
       if (moveX > 0)
       {
          renderer.flipX = !isRightByDefault;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3863611347778004440}
   - component: {fileID: 877979574345661927}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7901555079661015974}
   - component: {fileID: 759548111179642751}
   - component: {fileID: 3936490208531955026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,11 +135,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 400
-  nextWaypointDistance: 0.8
-  agroRange: 6.54
-  dontCareRange: 30
+  cost: 1
+  agroRange: 6
+  dontCareRange: 8
   contactDamage: 10
   physicsForce: 100
+  nextWaypointDistance: 0.8
   renderer: {fileID: 877979574345661927}
   explosionParticles: {fileID: 2182691619467330134, guid: f734ddcd59d9b7b41bf922818889aa1f, type: 3}
 --- !u!114 &1673645612723725781

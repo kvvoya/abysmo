@@ -5016,8 +5016,8 @@ MonoBehaviour:
   endRingRadius: 5.5
   startDirectionalLightRadius: 21
   endDirectionalLightRadius: 10
-  onIntensity: 0.1
-  offIntensity: 1
+  onIntensity: 1
+  offIntensity: 0.1
 --- !u!50 &203943139381490514
 Rigidbody2D:
   serializedVersion: 4

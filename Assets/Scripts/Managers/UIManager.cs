@@ -69,6 +69,11 @@ public class UIManager : MonoBehaviour
       BroadcastMessage("RefreshInfo");
    }
 
+   private void RefreshInfo()
+   {
+      return;
+   }
+
    public void HandleEscape()
    {
       if (!canPressEscape) return;

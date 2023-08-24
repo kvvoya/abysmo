@@ -135,7 +135,7 @@ public class Enemy : MonoBehaviour
          Destroy(particles.gameObject, particles.main.duration * 2f);
       }
 
-      XPManager.GainXP(cost);
+      FindObjectOfType<XPManager>().GainXP(cost);
       Destroy(gameObject);
    }
 
@@ -147,7 +147,6 @@ public class Enemy : MonoBehaviour
          playerHealth.DealDamage(contactDamage);
 
 
-         Debug.Log(transform.right.normalized);
          playerHealth.ApplyForce(transform.right.normalized * physicsForce);
       }
    }

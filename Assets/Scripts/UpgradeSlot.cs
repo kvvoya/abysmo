@@ -40,13 +40,20 @@ public class UpgradeSlot : MonoBehaviour, IPointerExitHandler, IPointerClickHand
 
    public void RefreshInfo()
    {
+      if (myUpgrade == null)
+      {
+         gameObject.SetActive(false);
+         infoboxText.text = "";
+         return;
+      }
+
       image.sprite = myUpgrade.sprite;
       nameText.text = myUpgrade.name;
 
       if (XPManager.collectedXP >= (int)myUpgrade.priceTag)
       {
          isAvailable = true;
-         image.color = new Color(1f, 1f, 1f, 0.75f);
+         image.color = !isHovered ? new Color(1f, 1f, 1f, 0.75f) : new Color(1f, 1f, 1f, 1f);
       }
       else
       {

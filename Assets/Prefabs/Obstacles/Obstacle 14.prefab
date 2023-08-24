@@ -408,6 +408,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle 14
       objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_TileAssetArray.Array.data[0].m_RefCount
+      value: 548
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_TileAssetArray.Array.data[1].m_RefCount
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_Tiles.Array.data[330].second.m_TileIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_Tiles.Array.data[331].second.m_TileIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_Tiles.Array.data[332].second.m_TileIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691653680654000790, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
+      propertyPath: m_Tiles.Array.data[333].second.m_TileIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6330080274113617825, guid: dd8c322c03898a34e9f50ea40e07b690, type: 3}
       propertyPath: height
       value: 65

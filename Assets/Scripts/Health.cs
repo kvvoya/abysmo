@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
 
    private void Die()
    {
-      Debug.Log("Dead");
+
       onDeath?.Invoke();
    }
 }

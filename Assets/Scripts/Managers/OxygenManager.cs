@@ -26,7 +26,6 @@ public class OxygenManager : MonoBehaviour
    {
       if (TimeLimit <= 0)
       {
-         Debug.Log("Time out!");
          StartCoroutine(KillPlayer(10, 1));
       }
    }

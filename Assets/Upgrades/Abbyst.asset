@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Abbyst
   m_EditorClassIdentifier: 
   upgradeName: Strength of Abyss
-  description: '+ You gain 50% more <color=#D600F2>Pressure Reduction</color>
+  description: '+ You gain 50% more <color=#611b85>Pressure Reduction</color>
 
     +
-    You have 25% more <color=#D11966>HP</color>
+    You have 25% more <color=#179154>HP</color>
 
-    - Your <color=#20F5EE>Oxygen</color>
+    - Your <color=#1a7ca3>Oxygen</color>
     depletes 20% faster'
   priceTag: 20
   sprite: {fileID: 21300000, guid: ff04c6e8f98ad38449aa8a894179e4c5, type: 3}

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Adrenaline Rush
   m_EditorClassIdentifier: 
   upgradeName: Adrenaline Rush
-  description: '+ Each enemy kill will restore 10% of <color=#19E6FF>Oxygen</color>
+  description: '+ Each enemy kill will restore 10% of <color=#1a7ca3>Oxygen</color>
 
     +
-    You have 90% more <color=#D600F2>Pressure Reduction</color>
+    You have 90% more <color=#611b85>Pressure Reduction</color>
 
     ~ Effect lasts
     for 20 seconds
 
-    - Each second you lose <color=#46FF19>2 HP</color>'
+    - Each second you lose <color=#179154>2 HP</color>'
   priceTag: 30
   sprite: {fileID: 21300000, guid: 8f9e5c2c9c795cd4d8848a080befc91f, type: 3}

@@ -19,6 +19,6 @@ MonoBehaviour:
     + <color=#FA0A0E>Knockback</color> given from enemy attacks is 50%
     weaker
 
-    - You have 50% less <color=#D11966>Max HP</color>'
+    - You have 50% less <color=#179154>Max HP</color>'
   priceTag: 20
   sprite: {fileID: 21300000, guid: 481705e5090fdc14d8c5583aef96d7dd, type: 3}

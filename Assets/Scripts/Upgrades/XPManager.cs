@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class XPManager : MonoBehaviour
 {
+   public UnityEvent onGainXP;
+
    public static int collectedXP { get; private set; }
 
    private List<Upgrade> lowUpgrades = new List<Upgrade>();
@@ -28,9 +31,10 @@ public class XPManager : MonoBehaviour
       GetShopRotation();
    }
 
-   public static void GainXP(int xp)
+   public void GainXP(int xp)
    {
       collectedXP += xp;
+      onGainXP?.Invoke();
    }
 
    public void PurchaseUpgrade(Upgrade upgrade)
@@ -82,8 +86,8 @@ public class XPManager : MonoBehaviour
 
    private void GetShopRotation()
    {
-      lowUpgrade = lowUpgrades[Random.Range(0, lowUpgrades.Count)];
-      mediumUpgrade = mediumUpgrades[Random.Range(0, mediumUpgrades.Count)];
-      highUpgrade = highUpgrades[Random.Range(0, highUpgrades.Count)];
+      lowUpgrade = lowUpgrades.Count != 0 ? lowUpgrades[Random.Range(0, lowUpgrades.Count)] : null;
+      mediumUpgrade = mediumUpgrades.Count != 0 ? mediumUpgrades[Random.Range(0, mediumUpgrades.Count)] : null;
+      highUpgrade = highUpgrades.Count != 0 ? highUpgrades[Random.Range(0, highUpgrades.Count)] : null;
    }
 }

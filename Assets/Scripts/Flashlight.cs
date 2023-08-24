@@ -45,7 +45,6 @@ public class Flashlight : MonoBehaviour
       int randomNumber = Random.Range(0, (int)(1000 * blinkChanceFactor + 1));
       if (randomNumber < pressure)
       {
-         Debug.Log("let's go!");
          int lightType = Random.Range(0, 2);
          StartCoroutine(BlinkLight(lightType == 0 ? ringLight : directionalLight));
       }

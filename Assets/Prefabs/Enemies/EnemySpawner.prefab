@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259111833228922976}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -14.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &118836314082357226
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa43dd103641a46a204050714bcf55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 25
   enemies:
   - {fileID: 3825438236042670315, guid: 19a6fb0bbcd766a4aa68b502091f1217, type: 3}
   - {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}

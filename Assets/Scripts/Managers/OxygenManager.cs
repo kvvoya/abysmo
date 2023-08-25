@@ -56,5 +56,10 @@ public class OxygenManager : MonoBehaviour
    {
       float toGet = maxTimeLimit * percentage;
       TimeLimit += toGet;
+
+      if (percentage > 0)
+      {
+         FindObjectOfType<UIManager>().GetComponent<Animator>().SetTrigger("playerOxygen");
+      }
    }
 }

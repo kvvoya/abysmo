@@ -12,7 +12,7 @@ public class ColliderBoundaries : MonoBehaviour
 
    private void Update()
    {
-      if (playerPosition.position.y > updatedPlayerPosition) return;
+      // if (playerPosition.position.y > updatedPlayerPosition) return;
 
       updatedPlayerPosition = playerPosition.position.y;
       transform.position = new Vector2(transform.position.x, playerPosition.position.y);

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea03be742a852a45890bd3dfda4f370, type: 3}
-  m_Name: Iron Will
+  m_Name: Inner Will
   m_EditorClassIdentifier: 
-  upgradeName: Iron Will
-  description: '+ You recover <color=#179154>1HP</color> each 3 seconds
+  upgradeName: Inner Will
+  description: '+ You recover <color=#179154>2HP</color> each 5 seconds
 
     - <color=#FA0A0E>Enemy
     damage</color> is 2 times bigger'

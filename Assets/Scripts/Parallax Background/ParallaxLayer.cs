@@ -17,7 +17,7 @@ public class ParallaxLayer : MonoBehaviour
    private void Update()
    {
       float yValue, xOffset, yOffset;
-      if (cameraTransform.position.y > updatedTransform)
+      if (cameraTransform.position.y > updatedTransform && false)
       {
          yValue = transform.position.y;
       }

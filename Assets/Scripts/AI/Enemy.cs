@@ -22,15 +22,19 @@ public class Enemy : MonoBehaviour
    int currentWaypoint = 0;
    bool followPlayer = false;
 
+   private bool showedTheAngry = false;
+
    Seeker seeker;
    Rigidbody2D rb;
    Player player;
+   Animator animator;
 
    private void Start()
    {
       player = FindObjectOfType<Player>();
       seeker = GetComponent<Seeker>();
       rb = GetComponent<Rigidbody2D>();
+      animator = GetComponent<Animator>();
 
       InvokeRepeating("UpdatePath", 0f, .25f);
 
@@ -70,10 +74,16 @@ public class Enemy : MonoBehaviour
       if (distance < agroRange)
       {
          followPlayer = true;
+         if (!showedTheAngry)
+         {
+            animator.SetTrigger("angee");
+            showedTheAngry = true;
+         }
       }
       else if (distance > dontCareRange)
       {
          followPlayer = false;
+         showedTheAngry = false;
       }
    }
 

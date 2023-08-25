@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
 
    [SerializeField] UnityEvent onDeath;
    [SerializeField] UnityEvent onDamage;
+   [SerializeField] UnityEvent onHeal;
 
    public int MaxHealth
    {
@@ -91,7 +92,10 @@ public class Health : MonoBehaviour
    public void HealHP(int amount)
    {
       if (amount > 0)
+      {
          health += amount;
+         onHeal?.Invoke();
+      }
       health = Mathf.Clamp(health, 0, maxHealth);
    }
 }

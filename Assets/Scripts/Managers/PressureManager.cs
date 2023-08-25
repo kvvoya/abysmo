@@ -15,6 +15,6 @@ public class PressureManager : MonoBehaviour
 
    private void Update()
    {
-      pressure = Mathf.Floor(-playerTransform.position.y * pressureFactor);
+      pressure = Mathf.Clamp(Mathf.Floor(-playerTransform.position.y * pressureFactor), 0, 1000);
    }
 }

@@ -104,11 +104,11 @@ public class UpgradeFunction : MonoBehaviour
       else if (upgrade == upgrades[4]) // iron will
       {
          isIronWill = true;
-         InvokeRepeating("IronWillHeal", 3f, 3f);
+         InvokeRepeating("IronWillHeal", 5f, 5f);
       }
       else if (upgrade == upgrades[5]) // mako insticts
       {
-         FindObjectOfType<OxygenManager>().onKill -= 0.02f;
+         FindObjectOfType<OxygenManager>().onKill -= 0.01f;
          onKillPressure -= 0.2f;
          onKillPressureTime = 3f;
       }
@@ -133,7 +133,7 @@ public class UpgradeFunction : MonoBehaviour
 
    private void IronWillHeal()
    {
-      playerHealth.HealHP(1);
+      playerHealth.HealHP(2);
    }
 
    private void TurnOffAdrenaline()

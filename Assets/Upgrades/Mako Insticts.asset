@@ -16,6 +16,6 @@ MonoBehaviour:
   description: '+ Every kill gives <color=#611b85>Pressure Reduction</color> by 20%
     for 3 seconds
 
-    - You lose 2% of <color=#1a7ca3>Oxygen</color> each kill'
+    - You lose 1% of <color=#1a7ca3>Oxygen</color> each kill'
   priceTag: 10
   sprite: {fileID: 21300000, guid: 4058ab43270015d4dadc5fac961e6113, type: 3}

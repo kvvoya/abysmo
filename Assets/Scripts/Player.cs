@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
       GetComponent<PlayerCombat>().enabled = false;
       uIManager.DisableEscape();
       FindObjectOfType<FadeOut>().GoToScene("MainMenu", 0.2f);
+      GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
    }
 
    public int GetCalculatedPressure()

@@ -52,5 +52,5 @@
         "temp/":true,
         "Temp/":true
    },
-   "dotnet.defaultSolution": "diving_deeper.sln"
+   "dotnet.defaultSolution": "pogging-diver.sln"
 }

@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour
 
       InvokeRepeating("UpdatePath", 0f, .25f);
 
+      if (UpgradeFunction.Instance.isNinjaDiven)
+      {
+         agroRange *= 0.75f;
+      }
    }
 
    private void UpdatePath()
@@ -144,10 +148,15 @@ public class Enemy : MonoBehaviour
       if (other.gameObject.TryGetComponent<Player>(out Player player))
       {
          Health playerHealth = player.GetComponent<Health>();
-         playerHealth.DealDamage(contactDamage);
+         if (UpgradeFunction.Instance.isPayback && !playerHealth.IsInvincible())
+         {
+            GetComponent<Health>().DealDamage(contactDamage / 2);
+         }
+         playerHealth.DealDamage(contactDamage * (UpgradeFunction.Instance.isIronWill ? 2 : 1));
 
 
-         playerHealth.ApplyForce(transform.right.normalized * physicsForce);
+         playerHealth.ApplyForce(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
+
       }
    }
 

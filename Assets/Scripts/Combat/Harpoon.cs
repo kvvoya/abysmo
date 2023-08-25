@@ -15,6 +15,8 @@ public class Harpoon : MonoBehaviour
    new Rigidbody2D rigidbody2D;
    LineRenderer lineRenderer;
 
+   private int baseDamage;
+
    bool isHooked = false;
 
    Transform playerTransform;
@@ -22,9 +24,20 @@ public class Harpoon : MonoBehaviour
 
    private void Start()
    {
+      baseDamage = hitDamage;
+
       rigidbody2D = GetComponent<Rigidbody2D>();
       playerTransform = FindObjectOfType<Player>().transform;
       lineRenderer = playerTransform.GetComponent<LineRenderer>();
+
+      if (UpgradeFunction.Instance.isOldRustyGun)
+      {
+         hitDamage = baseDamage * 10;
+      }
+      else
+      {
+         hitDamage = baseDamage;
+      }
    }
 
    private void Update()
@@ -66,6 +79,7 @@ public class Harpoon : MonoBehaviour
          if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
          {
             transform.SetParent(enemy.transform, true);
+            enemy.GetComponent<Health>().DealDamage(hitDamage);
             rigidbody2D.velocity = Vector2.zero;
             rigidbody2D.isKinematic = true;
             isHooked = true;

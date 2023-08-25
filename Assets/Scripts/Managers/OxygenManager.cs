@@ -6,6 +6,9 @@ public class OxygenManager : MonoBehaviour
    [Tooltip("In seconds")]
    [SerializeField] float maxTimeLimit = 600;
 
+   public float depletionFactor = 1f;
+   public float onKill = 0f;
+
    public float TimeLimit { get; private set; }
 
    private Health playerHealth;
@@ -18,7 +21,7 @@ public class OxygenManager : MonoBehaviour
 
    private void Update()
    {
-      TimeLimit -= Time.deltaTime;
+      TimeLimit -= Time.deltaTime * depletionFactor;
       CheckIfTimeIsOut();
    }
 
@@ -41,6 +44,17 @@ public class OxygenManager : MonoBehaviour
 
    public float GetPercentage()
    {
-      return TimeLimit / maxTimeLimit;
+      return Mathf.Min(TimeLimit / maxTimeLimit, 1f);
+   }
+
+   public void OnKill()
+   {
+      GainOxygen(onKill);
+   }
+
+   public void GainOxygen(float percentage)
+   {
+      float toGet = maxTimeLimit * percentage;
+      TimeLimit += toGet;
    }
 }

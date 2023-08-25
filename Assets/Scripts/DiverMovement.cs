@@ -28,6 +28,7 @@ public class DiverMovement : MonoBehaviour
 
    Rigidbody2D rb;
    PressureManager pressureManager;
+   Player player;
    public new SpriteRenderer renderer;
    public Transform bodyTransform;
    public ParticleSystem trailParticleSystem;
@@ -35,6 +36,7 @@ public class DiverMovement : MonoBehaviour
    ParticleSystem.EmissionModule emissionModule;
    Animator animator;
    UIManager uIManager;
+   Camera mainCamera;
 
    private Vector2 movementVector;
 
@@ -45,11 +47,13 @@ public class DiverMovement : MonoBehaviour
       pressureManager = FindObjectOfType<PressureManager>();
       animator = GetComponent<Animator>();
       uIManager = FindObjectOfType<UIManager>();
+      player = GetComponent<Player>();
 
       moveSpeed = startMoveSpeed;
       velocityCap = startVelocityCap;
       dampingStrength = startDampingStrength;
       rb.mass = startMass;
+      mainCamera = Camera.main;
 
       emissionModule = trailParticleSystem.emission;
    }
@@ -74,11 +78,13 @@ public class DiverMovement : MonoBehaviour
    {
       if (!uIManager.IsInGame()) return;
 
-      if (moveX > 0)
+      Vector2 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+      if (cursorPosition.x > transform.position.x)
       {
          renderer.flipX = !isRightByDefault;
       }
-      else if (moveX < 0)
+      else if (cursorPosition.x < transform.position.x)
       {
          renderer.flipX = isRightByDefault;
       }
@@ -92,7 +98,7 @@ public class DiverMovement : MonoBehaviour
 
    private void ApplyPressureFactors()
    {
-      float pressure = pressureManager.pressure;
+      float pressure = player.GetCalculatedPressure();
 
       moveSpeed = startMoveSpeed - (startMoveSpeed - endMoveSpeed) / 1000 * pressure;
       velocityCap = startVelocityCap - (startVelocityCap - endVelocityCap) / 1000 * pressure;

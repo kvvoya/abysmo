@@ -14,28 +14,31 @@ public class Flashlight : MonoBehaviour
    [SerializeField] float onIntensity = 0.4f;
    [SerializeField] float offIntensity = 1f;
 
-   PressureManager pressureManager;
+   public float directionalLightFactor = 1f;
+   public float ringLightFactor = 1f;
+
+   Player player;
    float pressure;
    bool canBlink = true;
 
    private void Start()
    {
-      pressureManager = FindObjectOfType<PressureManager>();
-      pressure = pressureManager.pressure;
+      player = GetComponent<Player>();
+      pressure = player.GetCalculatedPressure();
 
       InvokeRepeating("Blink", 1f, 1f);
    }
 
    private void Update()
    {
-      pressure = pressureManager.pressure;
+      pressure = player.GetCalculatedPressure();
       ApplyPressureFactors();
    }
 
    private void ApplyPressureFactors()
    {
-      ringLight.pointLightOuterRadius = startRingRadius - (startRingRadius - endRingRadius) / 1000 * pressure;
-      directionalLight.pointLightOuterRadius = startDirectionalLightRadius - (startDirectionalLightRadius - endDirectionalLightRadius) / 1000 * pressure;
+      ringLight.pointLightOuterRadius = (startRingRadius - (startRingRadius - endRingRadius) / 1000 * pressure) * ringLightFactor;
+      directionalLight.pointLightOuterRadius = (startDirectionalLightRadius - (startDirectionalLightRadius - endDirectionalLightRadius) / 1000 * pressure) * directionalLightFactor;
    }
 
    private void Blink()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Will
   m_EditorClassIdentifier: 
   upgradeName: Iron Will
-  description: '+ You recover <color=#179154>1HP</color> each 10 seconds
+  description: '+ You recover <color=#179154>1HP</color> each 3 seconds
 
     - <color=#FA0A0E>Enemy
     damage</color> is 2 times bigger'

@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
    [SerializeField] Image healthMeter;
    [SerializeField] Image oxygenMeter;
    [SerializeField] Image knifeCdMeter;
+   [SerializeField] Image harpoonCdMeter;
    [SerializeField] GameObject upgradesMenu;
 
    [Space(10)]
@@ -31,6 +32,11 @@ public class UIManager : MonoBehaviour
 
    bool isInGame = true;
    bool canPressEscape = true;
+
+   public void DisableEscape()
+   {
+      canPressEscape = false;
+   }
 
    public bool IsInGame() { return isInGame; }
 
@@ -52,10 +58,10 @@ public class UIManager : MonoBehaviour
       atmText.text = $"{pressureManager.pressure} atm";
       expText.text = $"{XPManager.collectedXP} EXP";
       balanceText.text = $"Balance: {XPManager.collectedXP} EXP";
-      healthMeter.fillAmount = (float)playerHealth.health / 100;
+      healthMeter.fillAmount = (float)playerHealth.health / playerHealth.MaxHealth;
       oxygenMeter.fillAmount = oxygenManager.GetPercentage();
 
-      if (Input.GetKeyDown(KeyCode.Escape))
+      if (Input.GetKeyDown(KeyCode.E))
       {
          HandleEscape();
       }
@@ -127,11 +133,32 @@ public class UIManager : MonoBehaviour
 
    private IEnumerator UseKnife()
    {
-      while (playerCombat.GetCDTimeRatio() < 1f)
+      while (playerCombat.GetCDTimeRatioKnife() < 1f)
       {
-         knifeCdMeter.fillAmount = playerCombat.GetCDTimeRatio();
+         knifeCdMeter.fillAmount = playerCombat.GetCDTimeRatioKnife();
          yield return null;
       }
       knifeCdMeter.gameObject.SetActive(false);
+   }
+
+   public void OnHarpoonUsed()
+   {
+      harpoonCdMeter.gameObject.SetActive(true);
+      StartCoroutine(UseHarpoon());
+   }
+
+   private IEnumerator UseHarpoon()
+   {
+      while (playerCombat.GetCDTimeRatioHarpoon() < 1f)
+      {
+         harpoonCdMeter.fillAmount = playerCombat.GetCDTimeRatioHarpoon();
+         yield return null;
+      }
+      harpoonCdMeter.gameObject.SetActive(false);
+   }
+
+   public void Die()
+   {
+      throw new NotImplementedException();
    }
 }

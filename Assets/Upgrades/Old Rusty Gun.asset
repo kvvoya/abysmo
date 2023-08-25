@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Old Rusty Gun
   m_EditorClassIdentifier: 
   upgradeName: Old Rusty Gun
-  description: '+ Your <color=#d61515>harpoon</color> deals as much <color=#d61515>damage</color>
-    as your <color=#d61515>knife</color>
+  description: '+ Your <color=#d61515>harpoon</color> deals 10X <color=#d61515>damage</color>
 
-    ~ Effect lasts for 30 seconds
+    ~
+    Effect lasts for 30 seconds
 
-    -
-    You have 50% <color=#611b85>Pressure Reduction</color> less'
+    - You have 50% <color=#611b85>Pressure Reduction</color>
+    less'
   priceTag: 30
   sprite: {fileID: 21300000, guid: 659e17fa5e65a904bbeadcc3ae1a5d88, type: 3}

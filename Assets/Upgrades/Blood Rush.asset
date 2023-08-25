@@ -19,11 +19,11 @@ MonoBehaviour:
     Your knife barely has any <color=#DE19FF>cooldown</color>
 
     + <color=#FF1919>Harpoon</color>
-    recharges after hitting an enemy
+    has no cooldown
 
     ~ Effect wears off after 1 minute
 
-    -
-    Your <color=#1a7ca3>Oxygen</color> depletes 3 times faster'
+    - Your <color=#1a7ca3>Oxygen</color>
+    depletes 3 times faster'
   priceTag: 30
   sprite: {fileID: 21300000, guid: 08a77c0cd4740144bab86d4f877ebc74, type: 3}

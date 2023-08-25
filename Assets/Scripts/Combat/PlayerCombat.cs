@@ -9,29 +9,40 @@ public class PlayerCombat : MonoBehaviour
    [SerializeField] Transform weaponParent;
    [SerializeField] SpriteRenderer parentRenderer;
    [SerializeField] UnityEvent onKnife;
-   [SerializeField] float startCooldown;
-   [SerializeField] float endCooldown;
+   [SerializeField] UnityEvent onHarpoon;
+   [SerializeField] float startCooldownKnife;
+   [SerializeField] float endCooldownKnife;
+   [SerializeField] float startCooldownHarpoon;
+   [SerializeField] float endCooldownHarpoon;
    [SerializeField] float stayTime = 0.5f;
    [SerializeField] float hookSpeed = 10f;
 
    float timeSinceLastAttacked = Mathf.Infinity;
-   float cooldown;
+   float timeSinceLastHarpoon = Mathf.Infinity;
+   float knifeCooldown;
+   float harpoonCooldown;
+
+   public float KnifeCooldownFactor { get; set; }
+   public float HarpoonCooldownFactor { get; set; }
 
    GameObject currentHook;
    bool isHooked = false;
    // bool isAttacking = false;
 
    Camera mainCamera;
-   PressureManager pressureManager;
+   Player player;
    UIManager uIManager;
    LineRenderer lineRenderer;
 
    private void Start()
    {
       mainCamera = Camera.main;
-      pressureManager = FindObjectOfType<PressureManager>();
+      player = GetComponent<Player>();
       uIManager = FindObjectOfType<UIManager>();
       lineRenderer = GetComponent<LineRenderer>();
+
+      KnifeCooldownFactor = 1f;
+      HarpoonCooldownFactor = 1f;
    }
 
    private void Update()
@@ -64,17 +75,30 @@ public class PlayerCombat : MonoBehaviour
          lineRenderer.SetPosition(1, currentHook.transform.position);
       }
 
+      if (timeSinceLastAttacked < knifeCooldown && UpgradeFunction.Instance.isNinjaDiven)
+      {
+         player.overFactor = 1.5f;
+      }
+      else
+      {
+         player.overFactor = 1f;
+      }
+
       timeSinceLastAttacked += Time.deltaTime;
+      timeSinceLastHarpoon += Time.deltaTime;
    }
 
    private void HandleHook()
    {
-      if (knife.activeInHierarchy || currentHook != null) return;
+      if (knife.activeInHierarchy || currentHook != null || timeSinceLastHarpoon < harpoonCooldown) return;
 
       Vector2 targetPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
       Vector2 playerPosition = transform.position;
       Vector2 direction = (targetPosition - playerPosition).normalized;
       float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+      timeSinceLastHarpoon = 0f;
+      onHarpoon?.Invoke();
 
       currentHook = Instantiate(harpoonPrefab, playerPosition, Quaternion.Euler(new Vector3(0, 0, angle)), transform);
       Rigidbody2D hookRb = currentHook.GetComponent<Rigidbody2D>();
@@ -86,7 +110,7 @@ public class PlayerCombat : MonoBehaviour
 
    private void HandleAttackButton()
    {
-      if (timeSinceLastAttacked > cooldown && uIManager.IsInGame() && currentHook == null)
+      if (timeSinceLastAttacked > knifeCooldown && uIManager.IsInGame() && currentHook == null)
       {
          knife.SetActive(true);
 
@@ -104,16 +128,23 @@ public class PlayerCombat : MonoBehaviour
       knife.SetActive(false);
    }
 
-   public float GetCDTimeRatio()
+   public float GetCDTimeRatioKnife()
    {
-      float result = Mathf.Min(timeSinceLastAttacked, cooldown) / cooldown;
+      float result = Mathf.Min(timeSinceLastAttacked, knifeCooldown) / knifeCooldown;
+      return result;
+   }
+
+   public float GetCDTimeRatioHarpoon()
+   {
+      float result = Mathf.Min(timeSinceLastHarpoon, harpoonCooldown) / harpoonCooldown;
       return result;
    }
 
    private void ApplyCooldown()
    {
-      float pressure = pressureManager.pressure;
+      float pressure = player.GetCalculatedPressure();
 
-      cooldown = startCooldown + (endCooldown - startCooldown) / 1000 * pressure;
+      knifeCooldown = (startCooldownKnife + (endCooldownKnife - startCooldownKnife) / 1000 * pressure) * KnifeCooldownFactor;
+      harpoonCooldown = (startCooldownHarpoon + (endCooldownHarpoon - startCooldownHarpoon) / 1000 * pressure) * HarpoonCooldownFactor;
    }
 }

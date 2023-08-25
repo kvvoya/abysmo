@@ -9,6 +9,14 @@ public class Health : MonoBehaviour
    [SerializeField] UnityEvent onDeath;
    [SerializeField] UnityEvent onDamage;
 
+   public int MaxHealth
+   {
+      get
+      {
+         return maxHealth;
+      }
+   }
+
    public int health { get; private set; }
 
    private float timeSinceGotHurt = Mathf.Infinity;
@@ -23,23 +31,22 @@ public class Health : MonoBehaviour
 
    private void Update()
    {
-      if (Input.GetKeyDown(KeyCode.N))
-      {
-         DealDamage(10);
-      }
       CheckIfDead();
 
       timeSinceGotHurt += Time.deltaTime;
    }
 
-   public void DealDamage(int damage)
+   public void DealDamage(int damage, bool giveInvincibility = true)
    {
-      if (timeSinceGotHurt < invincibilityTime) return;
+      if (timeSinceGotHurt < invincibilityTime && giveInvincibility) return;
 
       health -= damage;
-      onDamage?.Invoke();
 
-      timeSinceGotHurt = 0f;
+      if (giveInvincibility)
+      {
+         onDamage?.Invoke();
+         timeSinceGotHurt = 0f;
+      }
    }
 
    private void CheckIfDead()
@@ -59,9 +66,32 @@ public class Health : MonoBehaviour
 
    }
 
+   public bool IsInvincible()
+   {
+      Debug.Log("timeSinceGotHurt: " + timeSinceGotHurt);
+      return timeSinceGotHurt < invincibilityTime;
+   }
+
    private void Die()
    {
-
+      if (gameObject.CompareTag("Hittable"))
+      {
+         FindObjectOfType<OxygenManager>().OnKill();
+         FindObjectOfType<Player>().OnKill();
+      }
       onDeath?.Invoke();
+   }
+
+   public void UpgradeMaxHP(int amount)
+   {
+      maxHealth += amount;
+      HealHP(amount);
+   }
+
+   public void HealHP(int amount)
+   {
+      if (amount > 0)
+         health += amount;
+      health = Mathf.Clamp(health, 0, maxHealth);
    }
 }

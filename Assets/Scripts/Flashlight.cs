@@ -26,7 +26,7 @@ public class Flashlight : MonoBehaviour
       player = GetComponent<Player>();
       pressure = player.GetCalculatedPressure();
 
-      InvokeRepeating("Blink", 1f, 1f);
+      InvokeRepeating("Blink", 3f, 3f);
    }
 
    private void Update()
@@ -55,7 +55,7 @@ public class Flashlight : MonoBehaviour
 
    private IEnumerator BlinkLight(Light2D light)
    {
-      int timeToBlink = Random.Range(1, 4);
+      int timeToBlink = Random.Range(5, 15);
       Debug.Log("timeToBlink: " + timeToBlink);
 
       canBlink = false;

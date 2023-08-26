@@ -21,4 +21,4 @@ MonoBehaviour:
 
     - You have 50% less <color=#179154>Max HP</color>'
   priceTag: 20
-  sprite: {fileID: 21300000, guid: 481705e5090fdc14d8c5583aef96d7dd, type: 3}
+  sprite: {fileID: -2037041064, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

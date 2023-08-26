@@ -1,8 +1,17 @@
 using UnityEngine;
 using Pathfinding;
+using System.Collections;
+
+public enum EnemyType
+{
+   Contact,
+   SwordFish,
+   Flarefish
+}
 
 public class Enemy : MonoBehaviour
 {
+   [SerializeField] EnemyType myType = EnemyType.Contact;
    [SerializeField] float speed;
    [SerializeField] int cost;
    [SerializeField] float agroRange = 10f;
@@ -12,6 +21,13 @@ public class Enemy : MonoBehaviour
    [Space(10)]
 
    [Header("nevermind these")]
+   [SerializeField] float minSwordFishDashInterval;
+   [SerializeField] float maxSwordFishDashInterval;
+   [SerializeField] float maxLightAngle;
+   [SerializeField] float weakSpeed;
+   [SerializeField] int weakDamage;
+   [SerializeField] float strongSpeed;
+   [SerializeField] int strongDamage;
    [SerializeField] float nextWaypointDistance = 3f;
    [SerializeField] new SpriteRenderer renderer;
    [SerializeField] ParticleSystem explosionParticles;
@@ -28,6 +44,10 @@ public class Enemy : MonoBehaviour
    Rigidbody2D rb;
    Player player;
    Animator animator;
+   Camera mainCamera;
+   Transform playerLight;
+
+   bool coroutineRunning = false;
 
    private void Start()
    {
@@ -35,8 +55,11 @@ public class Enemy : MonoBehaviour
       seeker = GetComponent<Seeker>();
       rb = GetComponent<Rigidbody2D>();
       animator = GetComponent<Animator>();
+      mainCamera = Camera.main;
 
-      InvokeRepeating("UpdatePath", 0f, .25f);
+      playerLight = GameObject.FindGameObjectWithTag("PlayerLight").transform;
+
+      InvokeRepeating("UpdatePath", 0f, .1f);
 
       if (UpgradeFunction.Instance.isNinjaDiven)
       {
@@ -46,7 +69,7 @@ public class Enemy : MonoBehaviour
 
    private void UpdatePath()
    {
-      if (seeker.IsDone())
+      if (seeker.IsDone() && followPlayer)
       {
          seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
       }
@@ -73,11 +96,28 @@ public class Enemy : MonoBehaviour
 
       if (distance < agroRange)
       {
+         // Debug.Log("FOLLOW PLAYER");
          followPlayer = true;
+
+         if (myType == EnemyType.SwordFish && !coroutineRunning)
+         {
+            StartCoroutine(SwordFishDash());
+         }
+         else if (myType == EnemyType.Flarefish)
+         {
+            Vector2 playerToEnemy = transform.position - playerLight.position;
+            playerToEnemy.Normalize();
+
+            float angle = Vector2.SignedAngle(playerLight.right, playerToEnemy) - 90f;
+
+            FlarefishWeak(angle);
+         }
+
          if (!showedTheAngry)
          {
             animator.SetTrigger("angee");
             showedTheAngry = true;
+
          }
       }
       else if (distance > dontCareRange)
@@ -87,10 +127,32 @@ public class Enemy : MonoBehaviour
       }
    }
 
+   private void FlarefishWeak(float angle)
+   {
+      if (Mathf.Abs(angle) <= maxLightAngle)
+      {
+         speed = weakSpeed;
+         contactDamage = weakDamage;
+         Debug.Log("weak");
+      }
+      else
+      {
+         speed = strongSpeed;
+         contactDamage = strongDamage;
+         Debug.Log("strong");
+      }
+   }
+
    private void OnDrawGizmos()
    {
       Gizmos.color = Color.red;
       Gizmos.DrawWireSphere(transform.position, agroRange);
+
+      // if (path != null)
+      // {
+      //    Gizmos.DrawSphere((Vector2)path.vectorPath[currentWaypoint], 0.2f);
+      // }
+
    }
 
    private void RotateTowardsPlayer()
@@ -114,7 +176,10 @@ public class Enemy : MonoBehaviour
          Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
          Vector2 force = direction * speed * Time.deltaTime;
 
-         rb.AddForce(force);
+         if (myType != EnemyType.SwordFish)
+         {
+            rb.AddForce(force);
+         }
 
 
          float waypointDistance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -126,6 +191,23 @@ public class Enemy : MonoBehaviour
          }
       }
 
+   }
+
+   private IEnumerator SwordFishDash()
+   {
+      coroutineRunning = true;
+      while (followPlayer)
+      {
+         yield return new WaitForSeconds(Random.Range(minSwordFishDashInterval, maxSwordFishDashInterval));
+
+         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+         Vector2 force = direction * speed;
+
+         Debug.Log(direction);
+
+         rb.AddForce(force, ForceMode2D.Impulse);
+      }
+      coroutineRunning = false;
    }
 
    private void FlipSprite()
@@ -164,7 +246,7 @@ public class Enemy : MonoBehaviour
          }
          playerHealth.DealDamage(contactDamage * (UpgradeFunction.Instance.isIronWill ? 2 : 1));
 
-
+         Debug.Log(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
          playerHealth.ApplyForce(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
 
       }

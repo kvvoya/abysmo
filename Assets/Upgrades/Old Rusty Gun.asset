@@ -21,4 +21,4 @@ MonoBehaviour:
     - You have 50% <color=#611b85>Pressure Reduction</color>
     less'
   priceTag: 30
-  sprite: {fileID: 21300000, guid: 659e17fa5e65a904bbeadcc3ae1a5d88, type: 3}
+  sprite: {fileID: -1149955722, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

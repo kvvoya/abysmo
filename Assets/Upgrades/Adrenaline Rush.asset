@@ -23,4 +23,4 @@ MonoBehaviour:
 
     - Each second you lose <color=#179154>2 HP</color>'
   priceTag: 30
-  sprite: {fileID: 21300000, guid: 8f9e5c2c9c795cd4d8848a080befc91f, type: 3}
+  sprite: {fileID: 599013275, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

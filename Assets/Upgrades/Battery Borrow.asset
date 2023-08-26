@@ -18,4 +18,4 @@ MonoBehaviour:
     -
     Your <color=#c47d35>Ring Light</color> is 20% weaker'
   priceTag: 10
-  sprite: {fileID: 21300000, guid: 464b76e685a5450429f10942bca0180d, type: 3}
+  sprite: {fileID: 21300000, guid: 8f9e5c2c9c795cd4d8848a080befc91f, type: 3}

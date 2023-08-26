@@ -26,4 +26,4 @@ MonoBehaviour:
     - Your <color=#1a7ca3>Oxygen</color>
     depletes 3 times faster'
   priceTag: 30
-  sprite: {fileID: 21300000, guid: 08a77c0cd4740144bab86d4f877ebc74, type: 3}
+  sprite: {fileID: 599013275, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

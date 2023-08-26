@@ -116,7 +116,7 @@ public class DiverMovement : MonoBehaviour
       clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -velocityCap, velocityCap);
       clampedVelocity.y = Mathf.Clamp(clampedVelocity.y, -velocityCap, velocityCap);
 
-      rb.velocity = clampedVelocity;
+      // rb.velocity = clampedVelocity;
 
       // Debug.Log(rb.velocity);
    }

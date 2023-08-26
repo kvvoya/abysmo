@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5010435368263407306
+--- !u!1001 &1187842173876911542
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,27 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 759548111179642751, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Mass
-      value: 0.8
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 759548111179642751, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 877979574345661927, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 858617d1b359be040af0b7c54d3f7df4, type: 3}
-    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
-      propertyPath: maxHealth
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: a59387f471bfbf245b4c3f4dd4818888, type: 3}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9690883
+      value: -8.15
       objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7306767
+      value: -5.05
       objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -66,47 +62,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3094
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3094
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3094
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3936490208531955026, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: d13a2dd42ccf8024596b8722dfa0b6c7, type: 2}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
-      propertyPath: contactDamage
-      value: 8
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: myType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: agroRange
+      value: 14.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: weakSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: weakDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: strongSpeed
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: strongDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: dontCareRange
+      value: 19.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: maxLightAngle
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Size.x
-      value: 1.12
+      value: 1.8192039
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1.0321002
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Offset.x
-      value: 0.0037609339
+      value: -0.031667948
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Offset.y
-      value: 0.096842766
+      value: 0.041867495
       objectReference: {fileID: 0}
     - target: {fileID: 8693007309723000907, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Name
-      value: Feesh
+      value: Flarefish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

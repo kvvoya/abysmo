@@ -19,7 +19,7 @@ MonoBehaviour:
     Enemies'' <color=#ED281A>alert area</color> is 25% smaller
 
     - Using the knife
-    reduces <color=#611b85>Pressure Reduction</color> by 50% while the knife is on
+    reduces <color=#611b85>Pressure Reduction</color> by 25% while the knife is on
     cooldown'
   priceTag: 20
   sprite: {fileID: 394867174, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

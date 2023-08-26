@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: agroRange
-      value: 14.6
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: physicsForce
@@ -123,6 +123,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8693007309723000907, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8621767957825389043}
+    - targetCorrespondingSourceObject: {fileID: 8693007309723000907, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1179077920337891061}
   m_SourcePrefab: {fileID: 100100000, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
 --- !u!82 &1424269490203219237 stripped
 AudioSource:
@@ -230,3 +233,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1179077920337891061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467422094483854933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e672dd7e93b580a4e83082f060424472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

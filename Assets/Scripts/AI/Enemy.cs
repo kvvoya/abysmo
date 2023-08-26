@@ -1,6 +1,7 @@
 using UnityEngine;
 using Pathfinding;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 
 public enum EnemyType
 {
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
    [SerializeField] float nextWaypointDistance = 3f;
    [SerializeField] new SpriteRenderer renderer;
    [SerializeField] ParticleSystem explosionParticles;
+   [SerializeField] AudioClip dieSound;
 
    private float distance;
 
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour
    Player player;
    Animator animator;
    Transform playerLight;
+   Light2D lightLevel;
 
    bool coroutineRunning = false;
 
@@ -56,6 +59,7 @@ public class Enemy : MonoBehaviour
       animator = GetComponent<Animator>();
 
       playerLight = GameObject.FindGameObjectWithTag("PlayerLight").transform;
+      lightLevel = playerLight.GetComponent<Light2D>();
 
       InvokeRepeating("UpdatePath", 0f, .1f);
 
@@ -127,7 +131,7 @@ public class Enemy : MonoBehaviour
 
    private void FlarefishWeak(float angle)
    {
-      if (Mathf.Abs(angle) <= maxLightAngle)
+      if (Mathf.Abs(angle) <= maxLightAngle && lightLevel.intensity > 0.5f)
       {
          speed = weakSpeed;
          contactDamage = weakDamage;
@@ -196,7 +200,6 @@ public class Enemy : MonoBehaviour
       coroutineRunning = true;
       while (followPlayer)
       {
-         yield return new WaitForSeconds(Random.Range(minSwordFishDashInterval, maxSwordFishDashInterval));
 
          Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
          Vector2 force = direction * speed;
@@ -204,6 +207,7 @@ public class Enemy : MonoBehaviour
          Debug.Log(direction);
 
          rb.AddForce(force, ForceMode2D.Impulse);
+         yield return new WaitForSeconds(Random.Range(minSwordFishDashInterval, maxSwordFishDashInterval));
       }
       coroutineRunning = false;
    }
@@ -230,6 +234,7 @@ public class Enemy : MonoBehaviour
       }
 
       FindObjectOfType<XPManager>().GainXP(cost);
+      AudioSource.PlayClipAtPoint(dieSound, Camera.main.transform.position);
       Destroy(gameObject);
    }
 
@@ -242,7 +247,7 @@ public class Enemy : MonoBehaviour
          {
             GetComponent<Health>().DealDamage(contactDamage / 2);
          }
-         playerHealth.DealDamage(contactDamage * (UpgradeFunction.Instance.isIronWill ? 2 : 1));
+         playerHealth.DealDamage((int)(contactDamage * (UpgradeFunction.Instance.isIronWill ? 1.5f : 1)));
 
          playerHealth.ApplyForce(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
 

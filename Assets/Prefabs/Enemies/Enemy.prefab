@@ -152,6 +152,7 @@ MonoBehaviour:
   nextWaypointDistance: 0.8
   renderer: {fileID: 877979574345661927}
   explosionParticles: {fileID: 2182691619467330134, guid: f734ddcd59d9b7b41bf922818889aa1f, type: 3}
+  dieSound: {fileID: 8300000, guid: 5f7a0c89267232f4d9ac417539892944, type: 3}
 --- !u!114 &1673645612723725781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,18 +173,6 @@ MonoBehaviour:
       - m_Target: {fileID: 7861442240169646546}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: Die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2344104864767910715}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

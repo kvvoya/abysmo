@@ -9,12 +9,21 @@ public class Chest : MonoBehaviour
    [SerializeField] Sprite xp;
    [SerializeField] int giveHealth = 15;
    [SerializeField] float giveOxygen = 0.15f;
+   [SerializeField] float chance = 0.3f;
 
    public SpriteRenderer spriteRenderer;
 
    // Start is called before the first frame update
    void Start()
    {
+      if (Random.value > chance)
+      {
+         Destroy(gameObject);
+         return;
+      }
+
+      isXpBox = Random.value > 0.5f;
+
       if (isXpBox)
       {
          spriteRenderer.sprite = xp;

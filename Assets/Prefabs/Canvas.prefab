@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 8806453642994587771}
   - component: {fileID: 2809441573272545632}
   - component: {fileID: 2058721392943935258}
-  - component: {fileID: 2096935974813373845}
+  - component: {fileID: 4219427572428181937}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -556,15 +556,15 @@ RectTransform:
   m_GameObject: {fileID: 2418676211115754843}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7815406, y: 0.7815406, z: 0.7815406}
+  m_LocalScale: {x: 15.178299, y: 15.178299, z: 15.178299}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3759464774694124070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50.159904, y: 346.65167}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -80, y: 346.65167}
+  m_SizeDelta: {x: 10.24, y: 10.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2809441573272545632
 CanvasRenderer:
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84d63d4a80047f0409a0d45c7085f912, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2aa3e26a9632e44438dd5263f161e0e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2096935974813373845
+--- !u!114 &4219427572428181937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1534,6 +1534,7 @@ MonoBehaviour:
   knifeCdMeter: {fileID: 8251872479186422783}
   harpoonCdMeter: {fileID: 3808853618248313370}
   upgradesMenu: {fileID: 5402243068856581028}
+  onEquip: {fileID: 8300000, guid: ae39c521047437a44a4bdc7f1879e14a, type: 3}
   lowSlot: {fileID: 3950595376632430758}
   mediumSlot: {fileID: 7537347753513703141}
   highSlot: {fileID: 563331222306651603}

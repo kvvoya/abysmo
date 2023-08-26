@@ -43,6 +43,7 @@ public class ObstacleSpawner : MonoBehaviour
 
    private void Update()
    {
+      if (levelPartIndex >= generatedLevel.Count) return;
 
       if ((playerTransform.position.y - nextLevelPart.ObstaclePosition.y) < toGenerateBefore)
       {

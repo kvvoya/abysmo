@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
    [SerializeField] float stayTime = 0.5f;
    [SerializeField] float hookSpeed = 10f;
    [SerializeField] AudioClip harpoonShootSound;
+   [SerializeField] AudioClip knifeSound;
 
    float timeSinceLastAttacked = Mathf.Infinity;
    float timeSinceLastHarpoon = Mathf.Infinity;
@@ -27,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
    public float HarpoonCooldownFactor { get; set; }
 
    GameObject currentHook;
-   bool isHooked = false;
+   // bool isHooked = false;
    // bool isAttacking = false;
 
    Camera mainCamera;
@@ -80,7 +81,7 @@ public class PlayerCombat : MonoBehaviour
 
       if (timeSinceLastAttacked < knifeCooldown && UpgradeFunction.Instance.isNinjaDiven)
       {
-         player.overFactor = 1.5f;
+         player.overFactor = 1.25f;
       }
       else
       {
@@ -117,6 +118,7 @@ public class PlayerCombat : MonoBehaviour
       if (timeSinceLastAttacked > knifeCooldown && uIManager.IsInGame() && currentHook == null)
       {
          knife.SetActive(true);
+         audioSource.PlayOneShot(knifeSound);
 
          // transform.localScale = new Vector3(parentRenderer.flipX ? -1 : 1, 1, 1);
 

@@ -57,10 +57,13 @@ MonoBehaviour:
     chance: 0.1
   - enemy: {fileID: 9035738424249230436, guid: 19a8c07f319adb34287c91e59642c62d, type: 3}
     minPressure: 600
-    chance: 0.3
+    chance: 0.35
   - enemy: {fileID: 8989804614181894545, guid: 9f7d794b1cf86494da689522f43281e3, type: 3}
     minPressure: 400
     chance: 0.5
+  - enemy: {fileID: 2351623057045889929, guid: 1943d82011921c94db587e261fa7d63a, type: 3}
+    minPressure: 200
+    chance: 0.65
   - enemy: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
     minPressure: 0
     chance: 1

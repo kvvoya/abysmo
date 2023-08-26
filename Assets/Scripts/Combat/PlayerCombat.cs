@@ -36,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
    UIManager uIManager;
    LineRenderer lineRenderer;
    AudioSource audioSource;
+   Animator animator;
 
    private void Start()
    {
@@ -44,6 +45,7 @@ public class PlayerCombat : MonoBehaviour
       uIManager = FindObjectOfType<UIManager>();
       lineRenderer = GetComponent<LineRenderer>();
       audioSource = GetComponent<AudioSource>();
+      animator = GetComponent<Animator>();
 
       KnifeCooldownFactor = 1f;
       HarpoonCooldownFactor = 1f;
@@ -119,6 +121,7 @@ public class PlayerCombat : MonoBehaviour
       {
          knife.SetActive(true);
          audioSource.PlayOneShot(knifeSound);
+         animator.SetTrigger("slash");
 
          // transform.localScale = new Vector3(parentRenderer.flipX ? -1 : 1, 1, 1);
 

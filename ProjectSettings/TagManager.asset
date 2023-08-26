@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hittable
   - PlayerLight
+  - Trident
   layers:
   - Default
   - TransparentFX

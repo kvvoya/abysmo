@@ -133,7 +133,7 @@ public class UpgradeFunction : MonoBehaviour
 
    private void IronWillHeal()
    {
-      playerHealth.HealHP(2);
+      playerHealth.HealHP(3);
    }
 
    private void TurnOffAdrenaline()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Inner Will
   m_EditorClassIdentifier: 
   upgradeName: Inner Will
-  description: '+ You recover <color=#179154>2HP</color> each 5 seconds
+  description: '+ You recover <color=#179154>3HP</color> each 5 seconds
 
     - <color=#FA0A0E>Enemy
     damage</color> is 50% bigger'

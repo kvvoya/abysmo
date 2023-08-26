@@ -27,7 +27,7 @@ public class Obstacle : MonoBehaviour
 
    private void Update()
    {
-      if (Vector3.Distance(transform.position, playerTransform.position) > destroyAfter)
+      if (Vector3.Distance(transform.position, playerTransform.position) > destroyAfter && playerTransform.position.y < transform.position.y)
       {
          Destroy(gameObject);
       }

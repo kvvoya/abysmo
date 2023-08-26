@@ -200,6 +200,7 @@ public class Enemy : MonoBehaviour
       coroutineRunning = true;
       while (followPlayer)
       {
+         if (path == null) UpdatePath();
 
          Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
          Vector2 force = direction * speed;

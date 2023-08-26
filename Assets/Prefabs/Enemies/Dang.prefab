@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: agroRange
-      value: 7
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: physicsForce
@@ -95,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: contactDamage
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: dontCareRange
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8693007309723000907, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Name

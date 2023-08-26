@@ -37,12 +37,24 @@ PrefabInstance:
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.82
+      value: -5.0157933
       objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.16
+      value: -3.748402
       objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78,15 +90,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.9056475
+      value: 1.1476762
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.9056475
+      value: 1.1476762
       objectReference: {fileID: 0}
     - target: {fileID: 3863611347778004440, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.9056475
+      value: 1.1476762
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: cost
@@ -98,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: agroRange
-      value: 9.95
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: physicsForce
@@ -110,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: dontCareRange
-      value: 16.97
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Size.x
@@ -198,16 +210,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -6.3084035, y: 0.56095386}
-      - {x: -6.1965046, y: -1.7244616}
-      - {x: -4.6316333, y: -0.9014487}
-      - {x: -0.7986773, y: -2.2648032}
-      - {x: -1.8074503, y: -3.8965855}
-      - {x: 0.6275487, y: -3.7348313}
-      - {x: 1.8060427, y: -2.279046}
-      - {x: 6.6124434, y: -0.083814144}
-      - {x: 0.8817334, y: 1.4181867}
-      - {x: -1.5907917, y: 3.659634}
-      - {x: -1.6370077, y: 1.5106173}
-      - {x: -4.7565465, y: -0.08381367}
+    - - {x: -3.7390695, y: 0.4045596}
+      - {x: -3.828249, y: -1.3223047}
+      - {x: -2.866613, y: -0.5663185}
+      - {x: -0.48588884, y: -1.46049}
+      - {x: -1.2042155, y: -2.377327}
+      - {x: 0.40412807, y: -2.4166512}
+      - {x: 0.845335, y: -1.4523907}
+      - {x: 3.9760838, y: -0.016788006}
+      - {x: 0.36786652, y: 0.92666173}
+      - {x: -1.1216092, y: 2.4084802}
+      - {x: -1.1678247, y: 1.0414345}
+      - {x: -3.1255784, y: -0.12849784}
   m_UseDelaunayMesh: 0

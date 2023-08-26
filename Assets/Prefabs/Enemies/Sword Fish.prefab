@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: cost
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: speed
@@ -106,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: agroRange
-      value: 7.41
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: physicsForce
@@ -118,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: dontCareRange
-      value: 16.4
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: swordFishDashInterval

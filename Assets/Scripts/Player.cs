@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
       uIManager.DisableEscape();
       FindObjectOfType<FadeOut>().GoToScene("MainMenu", 0.2f);
       GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-      GetComponent<AudioSource>().PlayOneShot(deathSound);
+      GetComponent<AudioSource>().PlayOneShot(deathSound, 0.6f);
+      StartCoroutine(FindObjectOfType<MusicManager>().FadeOut(0.15f));
    }
 
    public int GetCalculatedPressure()
@@ -59,5 +60,18 @@ public class Player : MonoBehaviour
    private void RemoveUpgradePressure()
    {
       pressureFactor -= UpgradeFunction.Instance.onKillPressure;
+   }
+
+   private void OnTriggerEnter2D(Collider2D other)
+   {
+      if (other.gameObject.CompareTag("Trident"))
+      {
+         Debug.Log("Trident!");
+         GetComponent<Health>().enabled = false;
+         GetComponent<DiverMovement>().enabled = false;
+         FindObjectOfType<UIManager>().DisableEscape();
+         StartCoroutine(FindObjectOfType<MusicManager>().FadeOut(0.15f));
+         FindObjectOfType<FadeOut>().GoToScene("Win");
+      }
    }
 }

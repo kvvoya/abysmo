@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd152b171cfda6e4ca71e90bed5c6ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toHeal: 5
+  toHeal: 3
   animator: {fileID: 1476149246511000520}
 --- !u!95 &1476149246511000520
 Animator:

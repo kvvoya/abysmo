@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: cost
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: speed
@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: agroRange
-      value: 14.88
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: weakSpeed
@@ -212,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: dontCareRange
-      value: 19.41
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: maxLightAngle

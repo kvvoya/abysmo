@@ -91,7 +91,7 @@ public class Health : MonoBehaviour
 
    public void HealHP(int amount)
    {
-      if (amount > 0)
+      if (amount > 0 && health < maxHealth)
       {
          health += amount;
          onHeal?.Invoke();

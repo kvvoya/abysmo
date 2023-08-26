@@ -62,7 +62,7 @@ public class MusicManager : MonoBehaviour
       }
    }
 
-   private IEnumerator FadeOut(float speed)
+   public IEnumerator FadeOut(float speed)
    {
       while (audioSource.volume > 0)
       {

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
    [SerializeField] Image knifeCdMeter;
    [SerializeField] Image harpoonCdMeter;
    [SerializeField] GameObject upgradesMenu;
+   [SerializeField] AudioClip onEquip;
 
    [Space(10)]
    [Header("Upgrade Slots")]
@@ -84,6 +85,7 @@ public class UIManager : MonoBehaviour
    {
       if (!canPressEscape) return;
 
+      GetComponent<AudioSource>().PlayOneShot(onEquip);
       if (isInGame)
       {
          canPressEscape = false;

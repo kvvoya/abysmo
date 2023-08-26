@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
    [SerializeField] float endCooldownHarpoon;
    [SerializeField] float stayTime = 0.5f;
    [SerializeField] float hookSpeed = 10f;
+   [SerializeField] AudioClip harpoonShootSound;
 
    float timeSinceLastAttacked = Mathf.Infinity;
    float timeSinceLastHarpoon = Mathf.Infinity;
@@ -33,6 +34,7 @@ public class PlayerCombat : MonoBehaviour
    Player player;
    UIManager uIManager;
    LineRenderer lineRenderer;
+   AudioSource audioSource;
 
    private void Start()
    {
@@ -40,6 +42,7 @@ public class PlayerCombat : MonoBehaviour
       player = GetComponent<Player>();
       uIManager = FindObjectOfType<UIManager>();
       lineRenderer = GetComponent<LineRenderer>();
+      audioSource = GetComponent<AudioSource>();
 
       KnifeCooldownFactor = 1f;
       HarpoonCooldownFactor = 1f;
@@ -99,6 +102,7 @@ public class PlayerCombat : MonoBehaviour
 
       timeSinceLastHarpoon = 0f;
       onHarpoon?.Invoke();
+      audioSource.PlayOneShot(harpoonShootSound);
 
       currentHook = Instantiate(harpoonPrefab, playerPosition, Quaternion.Euler(new Vector3(0, 0, angle)), transform);
       Rigidbody2D hookRb = currentHook.GetComponent<Rigidbody2D>();

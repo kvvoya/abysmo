@@ -15,6 +15,8 @@ public class UpgradeSlot : MonoBehaviour, IPointerExitHandler, IPointerClickHand
    [SerializeField] Image image;
    [SerializeField] TextMeshProUGUI nameText;
    [SerializeField] TextMeshProUGUI infoboxText;
+   [SerializeField] AudioClip buySound;
+   [SerializeField] AudioClip errorSound;
 
    bool isAvailable = false;
    bool isHovered = false;
@@ -97,6 +99,11 @@ public class UpgradeSlot : MonoBehaviour, IPointerExitHandler, IPointerClickHand
       if (isAvailable)
       {
          xPManager.PurchaseUpgrade(myUpgrade);
+         GetComponentInParent<AudioSource>().PlayOneShot(buySound);
+      }
+      else
+      {
+         GetComponentInParent<AudioSource>().PlayOneShot(errorSound);
       }
    }
 }

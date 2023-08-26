@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906484697909747329}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -169,7 +168,6 @@ RectTransform:
   - {fileID: 1974126186677573980}
   - {fileID: 1210113080838526364}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -230,6 +228,9 @@ MonoBehaviour:
   myUpgrade: {fileID: 0}
   image: {fileID: 1009765836695555607}
   nameText: {fileID: 6099739176899222667}
+  infoboxText: {fileID: 0}
+  buySound: {fileID: 8300000, guid: 12d5b9ae0a757884781f574c14a8e3f5, type: 3}
+  errorSound: {fileID: 8300000, guid: 0f92b169f19c7a547bfcaba00ee652e2, type: 3}
 --- !u!1 &3206829596023732559
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +262,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906484697909747329}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

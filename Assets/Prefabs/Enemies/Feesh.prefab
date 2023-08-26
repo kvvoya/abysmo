@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7282121172255602161}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -86,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: d13a2dd42ccf8024596b8722dfa0b6c7, type: 2}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: contactDamage
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Size.x
@@ -113,3 +117,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+--- !u!82 &7282121172255602161 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2344104864767910715, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+  m_PrefabInstance: {fileID: 5010435368263407306}
+  m_PrefabAsset: {fileID: 0}

@@ -46,5 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 25
   enemies:
-  - {fileID: 3825438236042670315, guid: 19a6fb0bbcd766a4aa68b502091f1217, type: 3}
-  - {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
+  - enemy: {fileID: 6798921867310460876, guid: 82ec3ee5121d5544da8193632ee27256, type: 3}
+    minPressure: 500
+    chance: 0.0001
+  - enemy: {fileID: 3825438236042670315, guid: 19a6fb0bbcd766a4aa68b502091f1217, type: 3}
+    minPressure: 400
+    chance: 0.01
+  - enemy: {fileID: 7911761900975240470, guid: bb267208cd3603041a06d6ffb2259377, type: 3}
+    minPressure: 800
+    chance: 0.1
+  - enemy: {fileID: 9035738424249230436, guid: 19a8c07f319adb34287c91e59642c62d, type: 3}
+    minPressure: 600
+    chance: 0.3
+  - enemy: {fileID: 8989804614181894545, guid: 9f7d794b1cf86494da689522f43281e3, type: 3}
+    minPressure: 400
+    chance: 0.5
+  - enemy: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
+    minPressure: 0
+    chance: 1

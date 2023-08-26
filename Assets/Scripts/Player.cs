@@ -5,7 +5,11 @@ public class Player : MonoBehaviour
    public float pressureFactor = 1f;
    public float overFactor = 1f;
 
+   [SerializeField] AudioClip deathSound;
+
    PressureManager pressureManager;
+
+   bool isDead = false;
 
    private void Awake()
    {
@@ -27,13 +31,17 @@ public class Player : MonoBehaviour
 
    public void Die()
    {
+      if (isDead) return;
+      isDead = true;
       UIManager uIManager = FindObjectOfType<UIManager>();
+      GetComponent<Health>().enabled = false;
 
       GetComponent<DiverMovement>().enabled = false;
       GetComponent<PlayerCombat>().enabled = false;
       uIManager.DisableEscape();
       FindObjectOfType<FadeOut>().GoToScene("MainMenu", 0.2f);
       GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+      GetComponent<AudioSource>().PlayOneShot(deathSound);
    }
 
    public int GetCalculatedPressure()

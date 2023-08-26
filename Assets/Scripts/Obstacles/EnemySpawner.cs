@@ -1,22 +1,42 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public struct EnemySpawnData
+{
+   public Enemy enemy;
+   public int minPressure;
+   public float chance;
+
+   public EnemySpawnData(Enemy enemy, int minPressure, float chance)
+   {
+      this.enemy = enemy;
+      this.minPressure = minPressure;
+      this.chance = chance;
+   }
+}
 
 public class EnemySpawner : MonoBehaviour
 {
    [SerializeField] float range = 15f;
-   [SerializeField] List<Enemy> enemies;
+   [SerializeField] List<EnemySpawnData> enemies;
 
    Transform playerTransform;
    Enemy myEnemy = null;
 
+   PressureManager pressureManager;
+
    private void Start()
    {
       playerTransform = FindObjectOfType<Player>().transform;
+      pressureManager = FindObjectOfType<PressureManager>();
       SpawnEnemy();
    }
 
    private void Update()
    {
+
       float distance = Vector2.Distance(transform.position, playerTransform.position);
 
       if (distance > range)
@@ -29,8 +49,17 @@ public class EnemySpawner : MonoBehaviour
    {
       if (myEnemy != null) return;
 
-      Enemy toGenerate = enemies[Random.Range(0, enemies.Count)];
-      myEnemy = Instantiate(toGenerate, transform.position, Quaternion.identity);
+      foreach (EnemySpawnData spawnData in enemies)
+      {
+         float randomValue = UnityEngine.Random.value;
+         // Debug.Log($"{spawnData.enemy.name} - p/mp: {pressureManager.pressure} / {spawnData.minPressure} - random/chance: {randomValue} / {spawnData.chance} : {pressureManager.pressure >= spawnData.minPressure && randomValue < spawnData.chance}");
+         if (pressureManager.pressure >= spawnData.minPressure && randomValue < spawnData.chance)
+         {
+            myEnemy = Instantiate(spawnData.enemy, transform.position, Quaternion.identity);
+            return;
+         }
+
+      }
    }
 
    private void OnDrawGizmos()

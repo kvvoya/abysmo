@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
    Rigidbody2D rb;
    Player player;
    Animator animator;
-   Camera mainCamera;
    Transform playerLight;
 
    bool coroutineRunning = false;
@@ -55,7 +54,6 @@ public class Enemy : MonoBehaviour
       seeker = GetComponent<Seeker>();
       rb = GetComponent<Rigidbody2D>();
       animator = GetComponent<Animator>();
-      mainCamera = Camera.main;
 
       playerLight = GameObject.FindGameObjectWithTag("PlayerLight").transform;
 
@@ -133,13 +131,13 @@ public class Enemy : MonoBehaviour
       {
          speed = weakSpeed;
          contactDamage = weakDamage;
-         Debug.Log("weak");
+         animator.SetBool("weak", true);
       }
       else
       {
          speed = strongSpeed;
          contactDamage = strongDamage;
-         Debug.Log("strong");
+         animator.SetBool("weak", false);
       }
    }
 
@@ -246,7 +244,6 @@ public class Enemy : MonoBehaviour
          }
          playerHealth.DealDamage(contactDamage * (UpgradeFunction.Instance.isIronWill ? 2 : 1));
 
-         Debug.Log(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
          playerHealth.ApplyForce(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
 
       }

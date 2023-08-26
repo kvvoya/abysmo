@@ -20,6 +20,22 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2329103604784861183}
+    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+      propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3285732428593608617, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.82
@@ -128,6 +144,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6219016192179052173}
   m_SourcePrefab: {fileID: 100100000, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+--- !u!82 &2329103604784861183 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2344104864767910715, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
+  m_PrefabInstance: {fileID: 60039481050868932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8680276515480456335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8693007309723000907, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}

@@ -21,6 +21,6 @@ MonoBehaviour:
     ~ Effect lasts
     for 20 seconds
 
-    - Each second you lose <color=#179154>2 HP</color>'
+    - Each second you lose <color=#179154>1 HP</color>'
   priceTag: 30
   sprite: {fileID: 599013275, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

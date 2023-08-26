@@ -17,21 +17,20 @@ public class Flashlight : MonoBehaviour
    public float directionalLightFactor = 1f;
    public float ringLightFactor = 1f;
 
-   Player player;
+   PressureManager pressureManager;
    float pressure;
    bool canBlink = true;
 
    private void Start()
    {
-      player = GetComponent<Player>();
-      pressure = player.GetCalculatedPressure();
+      pressureManager = FindObjectOfType<PressureManager>();
 
       InvokeRepeating("Blink", 3f, 3f);
    }
 
    private void Update()
    {
-      pressure = player.GetCalculatedPressure();
+      pressure = pressureManager.pressure;
       ApplyPressureFactors();
    }
 

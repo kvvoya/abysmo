@@ -21,7 +21,7 @@ MonoBehaviour:
     + <color=#FF1919>Harpoon</color>
     has no cooldown
 
-    ~ Effect wears off after 1 minute
+    ~ Effect wears off after 30 seconds
 
     - Your <color=#1a7ca3>Oxygen</color>
     depletes 3 times faster'

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mako Insticts
   m_EditorClassIdentifier: 
   upgradeName: Mako Instincts
-  description: '+ Every kill gives <color=#611b85>Pressure Reduction</color> by 20%
+  description: '+ Every kill gives <color=#611b85>Pressure Reduction</color> by 30%
     for 3 seconds
 
     - You lose 1% of <color=#1a7ca3>Oxygen</color> each kill'

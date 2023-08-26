@@ -72,7 +72,7 @@ public class UpgradeFunction : MonoBehaviour
       {
          player.pressureFactor -= 0.5f;
          player.GetComponent<Health>().UpgradeMaxHP(25);
-         FindObjectOfType<OxygenManager>().depletionFactor += .20f;
+         FindObjectOfType<OxygenManager>().depletionFactor += .15f;
       }
       else if (upgrade == upgrades[1]) // adrenaline
       {
@@ -86,8 +86,8 @@ public class UpgradeFunction : MonoBehaviour
       else if (upgrade == upgrades[2]) // battery borrow
       {
          Flashlight flashlight = player.GetComponent<Flashlight>();
-         flashlight.directionalLightFactor += 0.3f;
-         flashlight.ringLightFactor -= 0.2f;
+         flashlight.directionalLightFactor += 0.5f;
+         flashlight.ringLightFactor -= 0.3f;
       }
       else if (upgrade == upgrades[3]) // blood rush
       {
@@ -109,7 +109,7 @@ public class UpgradeFunction : MonoBehaviour
       else if (upgrade == upgrades[5]) // mako insticts
       {
          FindObjectOfType<OxygenManager>().onKill -= 0.01f;
-         onKillPressure -= 0.2f;
+         onKillPressure -= 0.3f;
          onKillPressureTime = 3f;
       }
       else if (upgrade == upgrades[6]) // ninja
@@ -126,7 +126,7 @@ public class UpgradeFunction : MonoBehaviour
       else if (upgrade == upgrades[8]) // payback
       {
          isPayback = true;
-         player.GetComponent<Health>().UpgradeMaxHP(-50);
+         player.GetComponent<Health>().UpgradeMaxHP(-25);
       }
 
    }
@@ -152,7 +152,7 @@ public class UpgradeFunction : MonoBehaviour
       playerHealth = player.GetComponent<Health>();
       while (adrenalineRush)
       {
-         playerHealth.DealDamage(2, false);
+         playerHealth.DealDamage(1, false);
          yield return new WaitForSeconds(1f);
       }
       player.pressureFactor += 0.9f;
@@ -161,7 +161,7 @@ public class UpgradeFunction : MonoBehaviour
 
    private IEnumerator BloodRushAfter(PlayerCombat playerCombat, OxygenManager oxygenManager)
    {
-      yield return new WaitForSeconds(60);
+      yield return new WaitForSeconds(30);
       FindObjectOfType<Knife>().damageFactor -= 1.0f;
       playerCombat.KnifeCooldownFactor = 1f;
       playerCombat.HarpoonCooldownFactor = 1f;

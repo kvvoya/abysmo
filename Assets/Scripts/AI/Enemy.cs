@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
       if (UpgradeFunction.Instance.isNinjaDiven)
       {
-         agroRange *= 0.75f;
+         agroRange *= 0.60f;
       }
    }
 
@@ -200,15 +200,20 @@ public class Enemy : MonoBehaviour
       coroutineRunning = true;
       while (followPlayer)
       {
-         if (path == null) UpdatePath();
+         if (path != null)
+         {
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * speed;
 
-         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-         Vector2 force = direction * speed;
 
-         Debug.Log(direction);
+            rb.AddForce(force, ForceMode2D.Impulse);
+            yield return new WaitForSeconds(Random.Range(minSwordFishDashInterval, maxSwordFishDashInterval));
+         }
+         else
+         {
+            yield return null;
+         }
 
-         rb.AddForce(force, ForceMode2D.Impulse);
-         yield return new WaitForSeconds(Random.Range(minSwordFishDashInterval, maxSwordFishDashInterval));
       }
       coroutineRunning = false;
    }
@@ -248,7 +253,7 @@ public class Enemy : MonoBehaviour
          {
             GetComponent<Health>().DealDamage(contactDamage / 2);
          }
-         playerHealth.DealDamage((int)(contactDamage * (UpgradeFunction.Instance.isIronWill ? 1.5f : 1)));
+         playerHealth.DealDamage((int)(contactDamage * (UpgradeFunction.Instance.isIronWill ? 1.25f : 1)));
 
          playerHealth.ApplyForce(transform.right.normalized * physicsForce * (UpgradeFunction.Instance.isPayback ? 0.5f : 1f));
 

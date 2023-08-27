@@ -92,7 +92,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 759548111179642751, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Mass
-      value: 2
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 759548111179642751, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_LinearDrag
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a59387f471bfbf245b4c3f4dd4818888, type: 3}
     - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: maxHealth
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1673645612723725781, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: onDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: weakSpeed
-      value: 750
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: weakDamage
@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: strongSpeed
-      value: 3500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: physicsForce
@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7861442240169646546, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: maxLightAngle
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7901555079661015974, guid: 365a22d416b06c24d8831a01ba33251d, type: 3}
       propertyPath: m_Size.x

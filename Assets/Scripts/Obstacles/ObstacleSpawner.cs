@@ -50,6 +50,7 @@ public class ObstacleSpawner : MonoBehaviour
          Obstacle newObject = Instantiate(nextLevelPart.ObstacleType, nextLevelPart.ObstaclePosition, Quaternion.identity, gridParent);
 
          levelPartIndex++;
+         if (levelPartIndex >= generatedLevel.Count) return;
          nextLevelPart = generatedLevel[levelPartIndex];
       }
    }

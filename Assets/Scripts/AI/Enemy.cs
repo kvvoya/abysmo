@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
 {
    [SerializeField] EnemyType myType = EnemyType.Contact;
    [SerializeField] float speed;
+   [SerializeField] float startSpeed;
+   [SerializeField] float maxSpeed;
    [SerializeField] int cost;
    [SerializeField] float agroRange = 10f;
    [SerializeField] float dontCareRange = 30f;
@@ -35,10 +37,11 @@ public class Enemy : MonoBehaviour
    [SerializeField] AudioClip dieSound;
 
    private float distance;
+   private float movementSpeed;
 
    Path path;
    int currentWaypoint = 0;
-   bool followPlayer = false;
+   public bool followPlayer { get; private set; }
 
    private bool showedTheAngry = false;
 
@@ -48,6 +51,8 @@ public class Enemy : MonoBehaviour
    Animator animator;
    Transform playerLight;
    Light2D lightLevel;
+
+   Coroutine speedBoostCoroutine = null;
 
    bool coroutineRunning = false;
 
@@ -60,6 +65,10 @@ public class Enemy : MonoBehaviour
 
       playerLight = GameObject.FindGameObjectWithTag("PlayerLight").transform;
       lightLevel = playerLight.GetComponent<Light2D>();
+
+      movementSpeed = startSpeed;
+
+      followPlayer = false;
 
       InvokeRepeating("UpdatePath", 0f, .1f);
 
@@ -119,13 +128,19 @@ public class Enemy : MonoBehaviour
          {
             animator.SetTrigger("angee");
             showedTheAngry = true;
-
+            speedBoostCoroutine = StartCoroutine(SpeedBoost());
          }
       }
       else if (distance > dontCareRange)
       {
          followPlayer = false;
-         showedTheAngry = false;
+
+         if (showedTheAngry)
+         {
+            StopCoroutine(speedBoostCoroutine);
+            movementSpeed = startSpeed;
+            showedTheAngry = false;
+         }
       }
    }
 
@@ -133,13 +148,13 @@ public class Enemy : MonoBehaviour
    {
       if (Mathf.Abs(angle) <= maxLightAngle && lightLevel.intensity > 0.5f)
       {
-         speed = weakSpeed;
+         movementSpeed = weakSpeed;
          contactDamage = weakDamage;
          animator.SetBool("weak", true);
       }
       else
       {
-         speed = strongSpeed;
+         movementSpeed = strongSpeed;
          contactDamage = strongDamage;
          animator.SetBool("weak", false);
       }
@@ -176,7 +191,7 @@ public class Enemy : MonoBehaviour
          }
 
          Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-         Vector2 force = direction * speed * Time.deltaTime;
+         Vector2 force = direction * movementSpeed * Time.deltaTime;
 
          if (myType != EnemyType.SwordFish)
          {
@@ -203,7 +218,7 @@ public class Enemy : MonoBehaviour
          if (path != null)
          {
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * speed;
+            Vector2 force = direction * movementSpeed;
 
 
             rb.AddForce(force, ForceMode2D.Impulse);
@@ -267,5 +282,16 @@ public class Enemy : MonoBehaviour
 
       float angle = Mathf.Atan2(direction.y, direction.x);
       return angle;
+   }
+
+   private IEnumerator SpeedBoost()
+   {
+      float delta = (maxSpeed - startSpeed) / 40f;
+      while (movementSpeed < maxSpeed)
+      {
+         movementSpeed += delta;
+         yield return new WaitForSeconds(1);
+      }
+      movementSpeed = maxSpeed;
    }
 }

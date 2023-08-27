@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
       if (other.gameObject.CompareTag("Trident"))
       {
          Debug.Log("Trident!");
+         FindObjectOfType<SpeedrunTimer>().StopTimer();
          GetComponent<Health>().enabled = false;
          GetComponent<DiverMovement>().enabled = false;
          FindObjectOfType<UIManager>().DisableEscape();

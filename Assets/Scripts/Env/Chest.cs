@@ -38,7 +38,7 @@ public class Chest : MonoBehaviour
 
    private void OnTriggerEnter2D(Collider2D other)
    {
-      if (other.TryGetComponent<Knife>(out Knife knife))
+      if (other.TryGetComponent<Knife>(out Knife knife) || other.TryGetComponent<Harpoon>(out Harpoon harpoon))
       {
          Reward();
       }

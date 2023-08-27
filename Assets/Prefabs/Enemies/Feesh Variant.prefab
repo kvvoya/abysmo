@@ -17,8 +17,16 @@ PrefabInstance:
       value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
+      propertyPath: maxSpeed
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
       propertyPath: agroRange
       value: 13.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
+      propertyPath: startSpeed
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 2923346860191305496, guid: 928a2056aaeb24046bc17e43a4bb1f75, type: 3}
       propertyPath: physicsForce

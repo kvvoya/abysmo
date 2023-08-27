@@ -26,6 +26,13 @@ public class FadeOut : MonoBehaviour
    public IEnumerator FadeAway(float speed, Action callback)
    {
       float alpha = 1f;
+
+      SpeedrunTimer speedrunTimer = FindObjectOfType<SpeedrunTimer>();
+      if (speedrunTimer != null)
+      {
+         speedrunTimer.StartTimer();
+      }
+
       while (alpha > 0f)
       {
          alpha -= speed * Time.deltaTime;

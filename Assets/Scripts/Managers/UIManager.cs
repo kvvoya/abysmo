@@ -163,4 +163,15 @@ public class UIManager : MonoBehaviour
    {
       throw new NotImplementedException();
    }
+
+   public void Reroll()
+   {
+      Debug.Log(XPManager.collectedXP);
+      if (XPManager.collectedXP >= 15)
+      {
+         FindObjectOfType<XPManager>().GetShopRotation();
+         FindObjectOfType<XPManager>().GainXP(-15);
+         PrepareShop();
+      }
+   }
 }

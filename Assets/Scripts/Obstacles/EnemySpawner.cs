@@ -79,7 +79,10 @@ public class EnemySpawner : MonoBehaviour
    {
       if (myEnemy != null)
       {
-         Destroy(myEnemy.gameObject);
+         if (!myEnemy.followPlayer)
+         {
+            Destroy(myEnemy.gameObject);
+         }
       }
    }
 }

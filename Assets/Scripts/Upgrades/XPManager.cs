@@ -34,7 +34,10 @@ public class XPManager : MonoBehaviour
    public void GainXP(int xp)
    {
       collectedXP += xp;
-      onGainXP?.Invoke();
+      if (xp > 0)
+      {
+         onGainXP?.Invoke();
+      }
    }
 
    public void PurchaseUpgrade(Upgrade upgrade)
@@ -84,7 +87,7 @@ public class XPManager : MonoBehaviour
       }
    }
 
-   private void GetShopRotation()
+   public void GetShopRotation()
    {
       lowUpgrade = lowUpgrades.Count != 0 ? lowUpgrades[Random.Range(0, lowUpgrades.Count)] : null;
       mediumUpgrade = mediumUpgrades.Count != 0 ? mediumUpgrades[Random.Range(0, mediumUpgrades.Count)] : null;

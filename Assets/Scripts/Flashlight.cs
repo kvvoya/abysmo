@@ -13,17 +13,20 @@ public class Flashlight : MonoBehaviour
    [SerializeField] float endDirectionalLightRadius;
    [SerializeField] float onIntensity = 0.4f;
    [SerializeField] float offIntensity = 1f;
+   [SerializeField] AudioClip flickerSound;
 
    public float directionalLightFactor = 1f;
    public float ringLightFactor = 1f;
 
    PressureManager pressureManager;
+   AudioSource audioManager;
    float pressure;
    bool canBlink = true;
 
    private void Start()
    {
       pressureManager = FindObjectOfType<PressureManager>();
+      audioManager = GetComponent<AudioSource>();
 
       InvokeRepeating("Blink", 3f, 3f);
    }
@@ -56,6 +59,7 @@ public class Flashlight : MonoBehaviour
    {
       int timeToBlink = Random.Range(5, 15);
       Debug.Log("timeToBlink: " + timeToBlink);
+      audioManager.PlayOneShot(flickerSound);
 
       canBlink = false;
       light.intensity = offIntensity;

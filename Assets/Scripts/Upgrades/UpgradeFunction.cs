@@ -162,7 +162,7 @@ public class UpgradeFunction : MonoBehaviour
    private IEnumerator BloodRushAfter(PlayerCombat playerCombat, OxygenManager oxygenManager)
    {
       yield return new WaitForSeconds(30);
-      FindObjectOfType<Knife>().damageFactor -= 1.0f;
+      knife.damageFactor -= 1.0f;
       playerCombat.KnifeCooldownFactor = 1f;
       playerCombat.HarpoonCooldownFactor = 1f;
       oxygenManager.depletionFactor -= 2f;

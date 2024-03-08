@@ -141,7 +141,8 @@ public class Enemy : MonoBehaviour
 
             if (showedTheAngry)
             {
-                StopCoroutine(speedBoostCoroutine);
+                if (speedBoostCoroutine != null)
+                    StopCoroutine(speedBoostCoroutine);
                 movementSpeed = startSpeed;
                 showedTheAngry = false;
             }

@@ -24,6 +24,6 @@ MonoBehaviour:
     ~ Effect wears off after 30 seconds
 
     - Your <color=#1a7ca3>Oxygen</color>
-    depletes 3 times faster'
+    depletes 4 times faster'
   priceTag: 30
   sprite: {fileID: 599013275, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

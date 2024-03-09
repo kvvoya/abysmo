@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
 
     public void InvincibleColission()
     {
-        Debug.Log("I Got Called!");
         StartCoroutine(ICCoroutine());
 
     }

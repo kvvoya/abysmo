@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.0.0
+  m_text: 1.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b616330927e2c214f846eb9f5cc88180, type: 2}
   m_sharedMaterial: {fileID: -7292743255115681597, guid: b616330927e2c214f846eb9f5cc88180, type: 2}
@@ -1186,11 +1186,9 @@ MonoBehaviour:
     <color=#ff5983>yzpx</color>
     - assets, music, sfx, game design
 
-    <color=#ff9ec5>madeline</color> - playtesting,
-    moral support
 
-
-    Submission for <color=#d10279>Brackeys Game Jam 2023.2</color>'
+    Submission for <color=#d10279>Brackeys
+    Game Jam 2023.2</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b616330927e2c214f846eb9f5cc88180, type: 2}
   m_sharedMaterial: {fileID: -7292743255115681597, guid: b616330927e2c214f846eb9f5cc88180, type: 2}

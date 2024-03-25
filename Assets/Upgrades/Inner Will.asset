@@ -16,6 +16,6 @@ MonoBehaviour:
   description: '+ You recover <color=#179154>3HP</color> each 5 seconds
 
     - <color=#FA0A0E>Enemy
-    damage</color> is 25% bigger'
+    damage</color> is 35% bigger'
   priceTag: 10
   sprite: {fileID: -143762847, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

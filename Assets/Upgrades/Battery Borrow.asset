@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Battery Borrow
   m_EditorClassIdentifier: 
   upgradeName: Battery Borrow
-  description: '+ Your <color=#c47d35>Directional Flashlight</color> is 50% stronger
+  description: '+ Your <color=#c47d35>Flashlight</color> will never black out
 
     -
-    Your <color=#c47d35>Ring Light</color> is 30% weaker'
+    Your <color=#c47d35>Flashlightt</color> is 40% weaker'
   priceTag: 10
   sprite: {fileID: -659474705, guid: 3f29ead6ab17e2f4ab8e626c944d2b67, type: 3}

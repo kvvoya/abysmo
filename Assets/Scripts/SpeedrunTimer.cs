@@ -1,34 +1,53 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpeedrunTimer : MonoBehaviour
 {
-   public TextMeshProUGUI clockText;
+    public TextMeshProUGUI clockText;
 
-   private float elapsedTime = 0f;
-   private bool isRunning = false;
+    private float elapsedTime = 0f;
+    private bool isRunning = false;
 
-   private void Update()
-   {
-      if (isRunning)
-      {
-         elapsedTime += Time.deltaTime;
+    private float timeToReset = 1.5f;
+    private float timeRHeld = 0;
 
-         string minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
-         string seconds = (elapsedTime % 60).ToString("00");
-         string milliseconds = ((elapsedTime * 1000) % 1000).ToString("000");
+    private void Update()
+    {
+        if (timeRHeld >= timeToReset)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
 
-         clockText.text = $"{minutes}:{seconds}.{milliseconds}";
-      }
-   }
+        if (isRunning)
+        {
+            elapsedTime += Time.deltaTime;
 
-   public void StartTimer()
-   {
-      isRunning = true;
-   }
+            string minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
+            string seconds = (elapsedTime % 60).ToString("00");
+            string milliseconds = ((elapsedTime * 1000) % 1000).ToString("000");
 
-   public void StopTimer()
-   {
-      isRunning = false;
-   }
+            clockText.text = $"{minutes}:{seconds}.{milliseconds}";
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            timeRHeld = 0;
+        }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            timeRHeld += Time.deltaTime;
+        }
+
+    }
+
+    public void StartTimer()
+    {
+        isRunning = true;
+    }
+
+    public void StopTimer()
+    {
+        isRunning = false;
+    }
 }

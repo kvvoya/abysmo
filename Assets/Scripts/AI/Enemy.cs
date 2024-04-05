@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
             }
 
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * movementSpeed * Time.deltaTime;
+            Vector2 force = direction * movementSpeed * 0.02f;
 
             if (myType != EnemyType.SwordFish)
             {

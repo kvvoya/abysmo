@@ -5,7 +5,6 @@
 - ESC can be pressed to exit the tablet
 - camera tweaks
 - player can now go through enemies during invincibility frames
-- removed a horrible person from the main menu credits
 - the trans flag easter egg appears only once per run
 - tutorial is a bit slower
 - added **sex** to the game

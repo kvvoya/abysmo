@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     Animator animator;
     public QuitManager quitManager;
     public Animator upgradesAnimator;
+    public AudioSource rushSource;
 
     bool isInGame = true;
     bool canPressEscape = true;
@@ -179,10 +180,10 @@ public class UIManager : MonoBehaviour
     public void Reroll()
     {
         Debug.Log(XPManager.collectedXP);
-        if (XPManager.collectedXP >= 15)
+        if (XPManager.collectedXP >= 10)
         {
             FindObjectOfType<XPManager>().GetShopRotation();
-            FindObjectOfType<XPManager>().GainXP(-15);
+            FindObjectOfType<XPManager>().GainXP(-10);
             PrepareShop();
         }
     }

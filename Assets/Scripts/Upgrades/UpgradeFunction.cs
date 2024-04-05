@@ -6,12 +6,16 @@ using UnityEngine;
 public class UpgradeFunction : MonoBehaviour
 {
     [SerializeField] Knife knife;
+    [SerializeField] AudioClip rushClip;
 
     public Upgrade[] upgrades;
 
     Player player;
     Health playerHealth;
     MiniUpgrades miniUpgrades;
+
+    public AudioSource myAudioSource;
+    private bool isBloodRush = false;
 
     bool adrenalineRush = false;
 
@@ -39,6 +43,26 @@ public class UpgradeFunction : MonoBehaviour
                 }
             }
             return instance;
+        }
+    }
+
+    private void Update()
+    {
+        if (!isBloodRush) return;
+
+        if (Time.timeScale == 0)
+        {
+            if (myAudioSource.isPlaying)
+            {
+                myAudioSource.Pause();
+            }
+        }
+        else
+        {
+            if (!myAudioSource.isPlaying)
+            {
+                myAudioSource.Play();
+            }
         }
     }
 
@@ -102,6 +126,10 @@ public class UpgradeFunction : MonoBehaviour
             playerCombat.KnifeCooldownFactor = 0.15f;
             playerCombat.HarpoonCooldownFactor = 0f;
             oxygenManager.depletionFactor += 2f;
+            isBloodRush = true;
+
+            FindObjectOfType<MusicManager>().SetMusicVolume(0.1f);
+
             StartCoroutine(BloodRushAfter(playerCombat, oxygenManager));
 
         }
@@ -128,6 +156,8 @@ public class UpgradeFunction : MonoBehaviour
         {
             player.pressureFactor += 0.5f;
             isOldRustyGun = true;
+            FindObjectOfType<PlayerCombat>().SwitchHarpoonSound("gun");
+
             Invoke("TurnOffRusty", 30f);
             miniUpgrades.DoAction(7, true);
         }
@@ -155,6 +185,7 @@ public class UpgradeFunction : MonoBehaviour
     {
         isOldRustyGun = false;
         player.pressureFactor -= 0.5f;
+        FindObjectOfType<PlayerCombat>().SwitchHarpoonSound("harpoon");
         miniUpgrades.DoAction(7, false);
     }
 
@@ -178,5 +209,8 @@ public class UpgradeFunction : MonoBehaviour
         playerCombat.HarpoonCooldownFactor = 1f;
         miniUpgrades.DoAction(3, false);
         oxygenManager.depletionFactor -= 2f;
+        isBloodRush = false;
+
+        FindObjectOfType<MusicManager>().SetMusicVolume(0.4f);
     }
 }

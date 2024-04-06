@@ -4,156 +4,172 @@ using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
-   [SerializeField] GameObject knife;
-   [SerializeField] GameObject harpoonPrefab;
-   [SerializeField] Transform weaponParent;
-   [SerializeField] SpriteRenderer parentRenderer;
-   [SerializeField] UnityEvent onKnife;
-   [SerializeField] UnityEvent onHarpoon;
-   [SerializeField] float startCooldownKnife;
-   [SerializeField] float endCooldownKnife;
-   [SerializeField] float startCooldownHarpoon;
-   [SerializeField] float endCooldownHarpoon;
-   [SerializeField] float stayTime = 0.5f;
-   [SerializeField] float hookSpeed = 10f;
-   [SerializeField] AudioClip harpoonShootSound;
-   [SerializeField] AudioClip knifeSound;
+    [SerializeField] GameObject knife;
+    [SerializeField] GameObject harpoonPrefab;
+    [SerializeField] Transform weaponParent;
+    [SerializeField] SpriteRenderer parentRenderer;
+    [SerializeField] UnityEvent onKnife;
+    [SerializeField] UnityEvent onHarpoon;
+    [SerializeField] float startCooldownKnife;
+    [SerializeField] float endCooldownKnife;
+    [SerializeField] float startCooldownHarpoon;
+    [SerializeField] float endCooldownHarpoon;
+    [SerializeField] float stayTime = 0.5f;
+    [SerializeField] float hookSpeed = 10f;
+    private AudioClip usedShootSound;
+    [SerializeField] AudioClip harpoonShootSound;
+    [SerializeField] AudioClip gunShootSound;
+    [SerializeField] AudioClip knifeSound;
 
-   float timeSinceLastAttacked = Mathf.Infinity;
-   float timeSinceLastHarpoon = Mathf.Infinity;
-   float knifeCooldown;
-   float harpoonCooldown;
+    float timeSinceLastAttacked = Mathf.Infinity;
+    float timeSinceLastHarpoon = Mathf.Infinity;
+    float knifeCooldown;
+    float harpoonCooldown;
 
-   public float KnifeCooldownFactor { get; set; }
-   public float HarpoonCooldownFactor { get; set; }
+    public float KnifeCooldownFactor { get; set; }
+    public float HarpoonCooldownFactor { get; set; }
 
-   GameObject currentHook;
-   // bool isHooked = false;
-   // bool isAttacking = false;
+    GameObject currentHook;
+    // bool isHooked = false;
+    // bool isAttacking = false;
 
-   Camera mainCamera;
-   Player player;
-   UIManager uIManager;
-   LineRenderer lineRenderer;
-   AudioSource audioSource;
-   Animator animator;
+    Camera mainCamera;
+    Player player;
+    UIManager uIManager;
+    LineRenderer lineRenderer;
+    AudioSource audioSource;
+    Animator animator;
 
-   private void Start()
-   {
-      mainCamera = Camera.main;
-      player = GetComponent<Player>();
-      uIManager = FindObjectOfType<UIManager>();
-      lineRenderer = GetComponent<LineRenderer>();
-      audioSource = GetComponent<AudioSource>();
-      animator = GetComponent<Animator>();
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        player = GetComponent<Player>();
+        uIManager = FindObjectOfType<UIManager>();
+        lineRenderer = GetComponent<LineRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
 
-      KnifeCooldownFactor = 1f;
-      HarpoonCooldownFactor = 1f;
-   }
+        KnifeCooldownFactor = 1f;
+        HarpoonCooldownFactor = 1f;
 
-   private void Update()
-   {
-      Vector3 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-      cursorPosition.z = 0f;
+        usedShootSound = harpoonShootSound;
+    }
 
-      Vector3 direction = cursorPosition - transform.position;
-      float angle = Vector2.SignedAngle(Vector2.right, direction);
+    private void Update()
+    {
+        Vector3 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition.z = 0f;
 
-      if (!knife.gameObject.activeInHierarchy && uIManager.IsInGame())
-      {
-         weaponParent.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-      }
+        Vector3 direction = cursorPosition - transform.position;
+        float angle = Vector2.SignedAngle(Vector2.right, direction);
 
-      ApplyCooldown();
+        if (!knife.gameObject.activeInHierarchy && uIManager.IsInGame())
+        {
+            weaponParent.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
 
-      if (Input.GetMouseButtonDown(0))
-      {
-         HandleAttackButton();
-      }
-      else if (Input.GetMouseButtonDown(1))
-      {
-         HandleHook();
-      }
+        ApplyCooldown();
 
-      if (currentHook != null)
-      {
-         lineRenderer.SetPosition(0, transform.position);
-         lineRenderer.SetPosition(1, currentHook.transform.position);
-      }
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleAttackButton();
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            HandleHook();
+        }
 
-      if (timeSinceLastAttacked < knifeCooldown && UpgradeFunction.Instance.isNinjaDiven)
-      {
-         player.overFactor = 1.25f;
-      }
-      else
-      {
-         player.overFactor = 1f;
-      }
+        if (currentHook != null)
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, currentHook.transform.position);
+        }
 
-      timeSinceLastAttacked += Time.deltaTime;
-      timeSinceLastHarpoon += Time.deltaTime;
-   }
+        if (timeSinceLastAttacked < knifeCooldown && UpgradeFunction.Instance.isNinjaDiven)
+        {
+            player.overFactor = 1.25f;
+        }
+        else
+        {
+            player.overFactor = 1f;
+        }
 
-   private void HandleHook()
-   {
-      if (knife.activeInHierarchy || currentHook != null || timeSinceLastHarpoon < harpoonCooldown) return;
+        timeSinceLastAttacked += Time.deltaTime;
+        timeSinceLastHarpoon += Time.deltaTime;
+    }
 
-      Vector2 targetPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-      Vector2 playerPosition = transform.position;
-      Vector2 direction = (targetPosition - playerPosition).normalized;
-      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    private void HandleHook()
+    {
+        if (knife.activeInHierarchy || currentHook != null || timeSinceLastHarpoon < harpoonCooldown) return;
 
-      timeSinceLastHarpoon = 0f;
-      onHarpoon?.Invoke();
-      audioSource.PlayOneShot(harpoonShootSound);
+        Vector2 targetPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = transform.position;
+        Vector2 direction = (targetPosition - playerPosition).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-      currentHook = Instantiate(harpoonPrefab, playerPosition, Quaternion.Euler(new Vector3(0, 0, angle)), transform);
-      Rigidbody2D hookRb = currentHook.GetComponent<Rigidbody2D>();
-      lineRenderer.positionCount = 2;
-      lineRenderer.SetPosition(0, transform.position);
-      lineRenderer.SetPosition(1, currentHook.transform.position);
-      hookRb.velocity = direction * hookSpeed;
-   }
+        timeSinceLastHarpoon = 0f;
+        onHarpoon?.Invoke();
+        audioSource.PlayOneShot(usedShootSound);
 
-   private void HandleAttackButton()
-   {
-      if (timeSinceLastAttacked > knifeCooldown && uIManager.IsInGame() && currentHook == null)
-      {
-         knife.SetActive(true);
-         audioSource.PlayOneShot(knifeSound);
-         animator.SetTrigger("slash");
+        currentHook = Instantiate(harpoonPrefab, playerPosition, Quaternion.Euler(new Vector3(0, 0, angle)), transform);
+        Rigidbody2D hookRb = currentHook.GetComponent<Rigidbody2D>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, currentHook.transform.position);
+        hookRb.velocity = direction * hookSpeed;
+    }
 
-         // transform.localScale = new Vector3(parentRenderer.flipX ? -1 : 1, 1, 1);
+    private void HandleAttackButton()
+    {
+        if (timeSinceLastAttacked > knifeCooldown && uIManager.IsInGame() && currentHook == null)
+        {
+            knife.SetActive(true);
+            audioSource.PlayOneShot(knifeSound);
+            animator.SetTrigger("slash");
 
-         timeSinceLastAttacked = 0f;
-         onKnife?.Invoke();
-         StartCoroutine(ActivateKnife());
-      }
-   }
+            // transform.localScale = new Vector3(parentRenderer.flipX ? -1 : 1, 1, 1);
 
-   private IEnumerator ActivateKnife()
-   {
-      yield return new WaitForSeconds(stayTime);
-      knife.SetActive(false);
-   }
+            timeSinceLastAttacked = 0f;
+            onKnife?.Invoke();
+            StartCoroutine(ActivateKnife());
+        }
+    }
 
-   public float GetCDTimeRatioKnife()
-   {
-      float result = Mathf.Min(timeSinceLastAttacked, knifeCooldown) / knifeCooldown;
-      return result;
-   }
+    private IEnumerator ActivateKnife()
+    {
+        yield return new WaitForSeconds(stayTime);
+        knife.SetActive(false);
+    }
 
-   public float GetCDTimeRatioHarpoon()
-   {
-      float result = Mathf.Min(timeSinceLastHarpoon, harpoonCooldown) / harpoonCooldown;
-      return result;
-   }
+    public float GetCDTimeRatioKnife()
+    {
+        float result = Mathf.Min(timeSinceLastAttacked, knifeCooldown) / knifeCooldown;
+        return result;
+    }
 
-   private void ApplyCooldown()
-   {
-      float pressure = player.GetCalculatedPressure();
+    public float GetCDTimeRatioHarpoon()
+    {
+        float result = Mathf.Min(timeSinceLastHarpoon, harpoonCooldown) / harpoonCooldown;
+        return result;
+    }
 
-      knifeCooldown = (startCooldownKnife + (endCooldownKnife - startCooldownKnife) / 1000 * pressure) * KnifeCooldownFactor;
-      harpoonCooldown = (startCooldownHarpoon + (endCooldownHarpoon - startCooldownHarpoon) / 1000 * pressure) * HarpoonCooldownFactor;
-   }
+    private void ApplyCooldown()
+    {
+        float pressure = player.GetCalculatedPressure();
+
+        knifeCooldown = (startCooldownKnife + (endCooldownKnife - startCooldownKnife) / 1000 * pressure) * KnifeCooldownFactor;
+        harpoonCooldown = (startCooldownHarpoon + (endCooldownHarpoon - startCooldownHarpoon) / 1000 * pressure) * HarpoonCooldownFactor;
+    }
+
+    public void SwitchHarpoonSound(string type)
+    {
+        if (type == "gun")
+        {
+            usedShootSound = gunShootSound;
+        }
+        else if (type == "harpoon")
+        {
+            usedShootSound = harpoonShootSound;
+        }
+    }
 }

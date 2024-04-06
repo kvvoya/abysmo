@@ -16,7 +16,7 @@ MonoBehaviour:
   description: '+ Your <color=#ED281A>knife''s cooldown</color> is 25% faster
 
     +
-    Enemies'' <color=#ED281A>alert area</color> is 40% smaller
+    Enemies'' <color=#ED281A>alert area</color> is 50% smaller
 
     - Using the knife
     reduces <color=#611b85>Pressure Reduction</color> by 25% while the knife is on

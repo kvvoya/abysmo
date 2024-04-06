@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   speed: 400
+  startSpeed: 0
+  maxSpeed: 0
   cost: 1
   agroRange: 6
   dontCareRange: 8
